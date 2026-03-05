@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SISIMA GROUP ZAMBIA LIMITED | Vehicle Sourcing & Logistics</title>
+  <meta name="description" content="SISIMA GROUP ZAMBIA LIMITED — Premier vehicle sourcing, customs clearing, freight and logistics. Easy. Safe. Reliable."/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sky:   { DEFAULT: '#0EA5E9', dark: '#0284C7', light: '#BAE6FD' },
+            navy:  { DEFAULT: '#0F172A', mid: '#1E293B', soft: '#334155' },
+            gold:  { DEFAULT: '#F59E0B', light: '#FDE68A' },
+          },
+          fontFamily: {
+            sans: ['DM Sans', 'system-ui', 'sans-serif'],
+            display: ['Barlow Condensed', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- Swiper.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css"/>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+  <style>
+    :root {
+      --sky: #0EA5E9;
+      --sky-dark: #0284C7;
+      --navy: #0F172A;
+      --navy-mid: #1E293B;
+      --gold: #F59E0B;
+      --gold-light: #FDE68A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: #0F172A; background: #fff; overflow-x: hidden; }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: -1;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* ── NAVBAR ── */
+    #navbar { transition: background 0.4s, box-shadow 0.4s, padding 0.3s; }
+    #navbar.scrolled {
+      background: rgba(15,23,42,0.97) !important;
+      box-shadow: 0 4px 32px rgba(0,0,0,.5);
+      padding-top: 0.5rem !important;
+      padding-bottom: 0.5rem !important;
+    }
+    .nav-link {
+      position: relative;
+      color: rgba(255,255,255,0.85);
+      transition: color 0.2s;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: var(--sky);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .nav-link:hover { color: #fff; }
+    .nav-link:hover::after { transform: scaleX(1); }
+
+    /* ── MOBILE MENU ── */
+    #mobile-menu {
+      transform: translateY(-100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
+      opacity: 0;
+    }
+    #mobile-menu.open {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* ── HERO SWIPER ── */
+    .hero-swiper { width: 100%; height: 100vh; min-height: 580px; }
+    .hero-swiper .swiper-slide { position: relative; overflow: hidden; }
+    .hero-swiper .swiper-slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 7s ease; }
+    .hero-swiper .swiper-slide-active img { transform: scale(1); }
+    .slide-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(15,23,42,.88) 0%, rgba(14,165,233,.18) 60%, rgba(15,23,42,.5) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 1.5rem;
+    }
+    .hero-badge {
+      background: rgba(14,165,233,.15);
+      border: 1px solid rgba(14,165,233,.4);
+      backdrop-filter: blur(8px);
+    }
+    .swiper-button-next, .swiper-button-prev {
+      color: #fff !important;
+      background: rgba(14,165,233,.3);
+      border-radius: 50%;
+      width: 48px !important; height: 48px !important;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.15);
+      transition: background 0.2s;
+    }
+    .swiper-button-next:hover, .swiper-button-prev:hover { background: rgba(14,165,233,.55); }
+    .swiper-button-next::after, .swiper-button-prev::after { font-size: 0.9rem !important; font-weight: 900; }
+    .swiper-pagination-bullet { background: #fff !important; opacity: .5; width: 8px; height: 8px; }
+    .swiper-pagination-bullet-active { opacity: 1 !important; background: #0EA5E9 !important; width: 24px; border-radius: 4px; }
+
+    /* ── GRADIENT TEXT ── */
+    .grad-text { background: linear-gradient(90deg, #0EA5E9, #38BDF8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .grad-text-gold { background: linear-gradient(90deg, #F59E0B, #FDE68A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    /* ── SECTION TITLE PILL ── */
+    .section-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(14,165,233,0.08);
+      border: 1px solid rgba(14,165,233,0.2);
+      color: var(--sky); font-size: 0.72rem;
+      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 999px;
+    }
+
+    /* ── SERVICE CARDS ── */
+    .service-card {
+      position: relative; overflow: hidden;
+      transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .35s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(14,165,233,0.05) 0%, transparent 60%);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .service-card:hover { transform: translateY(-10px); box-shadow: 0 24px 60px rgba(14,165,233,.16); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon-ring { background: linear-gradient(135deg, #0EA5E9, #0284C7); }
+
+    /* ── STATS COUNTER ── */
+    .stat-number { font-feature-settings: 'tnum'; }
+
+    /* ── STEP CONNECTOR ── */
+    .step-line {
+      flex: 1; height: 1px;
+      background: linear-gradient(90deg, rgba(14,165,233,.6), rgba(14,165,233,.2));
+      margin: 0 0.75rem; position: relative;
+    }
+    .step-line::after {
+      content: '';
+      position: absolute; right: 0; top: 50%;
+      transform: translateY(-50%);
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--sky);
+    }
+
+    /* ── VEHICLE CARDS ── */
+    .vehicle-card {
+      display: flex; flex-direction: column; height: 100%;
+      transition: transform .3s cubic-bezier(0.34,1.56,0.64,1), box-shadow .3s;
+    }
+    .vehicle-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(14,165,233,.16); }
+    .card-body { flex: 1; display: flex; flex-direction: column; }
+    .card-specs { margin-top: auto; padding-top: 0.5rem; }
+    .stock-swiper { padding-bottom: 2.5rem !important; }
+    .stock-swiper .swiper-slide { height: auto !important; display: flex; align-items: stretch; }
+    .stock-swiper .swiper-pagination-bullet { background: #0EA5E9 !important; }
+
+    /* ── PARTNERS SECTION ── */
+    .partner-logo-wrap {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 16px 18px;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      text-align: center;
+      height: 100%;
+      transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+    }
+    .partner-logo-wrap:hover {
+      box-shadow: 0 8px 30px rgba(14,165,233,.12);
+      border-color: rgba(14,165,233,.3);
+      transform: translateY(-4px);
+    }
+    .partner-logo-img-box {
+      width: 100%; height: 60px;
+      display: flex; align-items: center; justify-content: center;
+      background: #f8fafc; border: 1px solid #e8edf2;
+      border-radius: 10px; overflow: hidden;
+      padding: 8px 12px;
+      flex-shrink: 0; margin-bottom: 10px;
+    }
+    .partner-logo-img-box img {
+      max-height: 40px; max-width: 130px;
+      width: auto; height: auto; object-fit: contain;
+    }
+
+    /* ── CONTACT ── */
+    .contact-item { transition: background .25s, transform .2s; border-radius: 12px; }
+    .contact-item:hover { background: rgba(14,165,233,.06); transform: translateX(4px); }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 9999;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 28px rgba(37,211,102,.55);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 36px rgba(37,211,102,.7); }
+    .wa-float-ping {
+      position: absolute;
+      width: 100%; height: 100%; border-radius: 50%;
+      background: rgba(37,211,102,.4);
+      animation: ping 2s cubic-bezier(0,0,.2,1) infinite;
+    }
+    @keyframes ping { 75%,100%{ transform:scale(1.6); opacity:0; } }
+
+    /* ── SCROLL TO TOP ── */
+    #scroll-top {
+      position: fixed; bottom: 5.5rem; right: 1.75rem; z-index: 9998;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(15,23,42,.7); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; cursor: pointer;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity 0.3s, transform 0.3s, background 0.2s;
+    }
+    #scroll-top.visible { opacity: 1; transform: translateY(0); }
+    #scroll-top:hover { background: var(--sky); }
+
+    /* ── BUTTONS ── */
+    .btn-primary {
+      background: linear-gradient(135deg, #0EA5E9, #0284C7);
+      transition: filter .25s, transform .2s, box-shadow .2s;
+      box-shadow: 0 4px 20px rgba(14,165,233,.4);
+    }
+    .btn-primary:hover { filter: brightness(1.1); transform: scale(1.03); box-shadow: 0 6px 28px rgba(14,165,233,.55); }
+    .btn-gold { background: linear-gradient(135deg, #F59E0B, #D97706); transition: filter .25s, transform .2s; }
+    .btn-gold:hover { filter: brightness(1.1); transform: scale(1.03); }
+    .btn-outline {
+      border: 2px solid rgba(255,255,255,.75);
+      transition: background .25s, color .25s, border-color .25s;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,1); color: #0F172A; border-color: #fff; }
+    .wa-send-btn { background: linear-gradient(135deg, #25D366, #128C7E); transition: filter .25s, transform .2s; }
+    .wa-send-btn:hover { filter: brightness(1.08); transform: scale(1.02); }
+
+    /* ── TESTIMONIAL ── */
+    .testimonial-card { transition: transform .3s, box-shadow .3s; }
+    .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+
+    /* ── FAQ ACCORDION ── */
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+    .faq-answer.open { max-height: 400px; }
+    .faq-chevron { transition: transform 0.3s; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+
+    /* ── TICKER STRIP ── */
+    .ticker-track {
+      display: flex; width: max-content;
+      animation: ticker 28s linear infinite;
+    }
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
+
+    /* ── MOBILE RESPONSIVE TWEAKS ── */
+    @media (max-width: 640px) {
+      .hero-swiper { height: 100svh; }
+      .step-line { display: none; }
+      .swiper-button-next, .swiper-button-prev { display: none !important; }
+    }
+
+    /* ── PROGRESS BAR ── */
+    #page-progress {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, #0EA5E9, #F59E0B);
+      transition: width 0.1s linear;
+    }
+
+    /* ── WAVE DIVIDER ── */
+    .wave-divider svg { display: block; }
+
+    /* ── HOVER LIFT ── */
+    .hover-lift { transition: transform 0.25s cubic-bezier(.34,1.56,.64,1); }
+    .hover-lift:hover { transform: translateY(-4px); }
+  </style>
+</head>
+<body class="bg-white text-navy">
+
+<!-- PAGE PROGRESS BAR -->
+<div id="page-progress"></div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--                   NAVBAR                        -->
+<!-- ═══════════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-transparent py-4 px-5 md:px-10 flex items-center justify-between transition-all duration-300">
+
+  <!-- Logo + Name -->
+  <a href="#" class="flex items-center gap-3 group flex-shrink-0">
+    <div class="relative">
+      <img src="images/logo.jpeg" alt="Sisima Logo"
+           class="h-11 w-11 rounded-full object-cover ring-2 ring-sky-DEFAULT/60 group-hover:ring-gold transition duration-300"/>
+      <span class="absolute -bottom-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white"></span>
+    </div>
+    <div class="leading-tight">
+      <p class="text-white font-display font-black text-sm tracking-wider uppercase">SISIMA GROUP</p>
+      <p class="text-sky-light text-[9px] tracking-widest uppercase opacity-80">Zambia Limited</p>
+    </div>
+  </a>
+
+  <!-- Desktop Nav -->
+  <ul class="hidden lg:flex items-center gap-7 text-sm font-medium">
+    <li><a href="#about"    class="nav-link font-semibold">About</a></li>
+    <li><a href="#services" class="nav-link font-semibold">Services</a></li>
+    <li><a href="#process"  class="nav-link font-semibold">How It Works</a></li>
+    <li><a href="#stock"    class="nav-link font-semibold">Vehicles</a></li>
+    <li><a href="#partners" class="nav-link font-semibold">Partners</a></li>
+    <li><a href="#contact"  class="nav-link font-semibold">Contact</a></li>
+    <li>
+      <a href="https://wa.me/260977504807" target="_blank"
+         class="btn-gold px-5 py-2.5 rounded-full text-white text-sm font-bold shadow-lg flex items-center gap-2">
+        <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp Us
+      </a>
+    </li>
+  </ul>
+
+  <!-- Mobile Hamburger -->
+  <button id="menu-btn" class="lg:hidden text-white p-2 rounded-xl border border-white/20 backdrop-blur-sm bg-white/5 transition hover:bg-white/15" aria-label="Toggle menu">
+    <i class="fa-solid fa-bars text-lg" id="menu-icon"></i>
+  </button>
+</nav>
+
+<!-- ─── MOBILE FULLSCREEN MENU ─── -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-navy flex flex-col items-center justify-center gap-7 text-white">
+  <!-- Background accent -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-32 -right-32 w-80 h-80 rounded-full bg-sky-DEFAULT/10 blur-3xl"></div>
+    <div class="absolute -bottom-20 -left-20 w-64 h-64 rounded-full bg-gold/10 blur-3xl"></div>
+  </div>
+
+  <img src="images/logo.jpeg" alt="Logo" class="h-20 w-20 rounded-full ring-4 ring-sky-DEFAULT object-cover mb-2"/>
+  <p class="font-display font-black text-xl tracking-wider">SISIMA GROUP</p>
+
+  <nav class="flex flex-col items-center gap-5 text-xl font-semibold mt-2">
+    <a href="#about"    onclick="closeMobileMenu()" class="hover:text-sky-light transition flex items-center gap-2"><i class="fa-solid fa-circle-info text-sky-DEFAULT text-base"></i> About</a>
+    <a href="#services" onclick="closeMobileMenu()" class="hover:text-sky-light transition flex items-center gap-2"><i class="fa-solid fa-briefcase text-sky-DEFAULT text-base"></i> Services</a>
+    <a href="#process"  onclick="closeMobileMenu()" class="hover:text-sky-light transition flex items-center gap-2"><i class="fa-solid fa-list-ol text-sky-DEFAULT text-base"></i> How It Works</a>
+    <a href="#stock"    onclick="closeMobileMenu()" class="hover:text-sky-light transition flex items-center gap-2"><i class="fa-solid fa-car text-sky-DEFAULT text-base"></i> Vehicles</a>
+    <a href="#partners" onclick="closeMobileMenu()" class="hover:text-sky-light transition flex items-center gap-2"><i class="fa-solid fa-handshake text-sky-DEFAULT text-base"></i> Partners</a>
+    <a href="#contact"  onclick="closeMobileMenu()" class="hover:text-sky-light transition flex items-center gap-2"><i class="fa-solid fa-phone text-sky-DEFAULT text-base"></i> Contact</a>
+  </nav>
+
+  <a href="https://wa.me/260977504807" target="_blank" onclick="closeMobileMenu()"
+     class="wa-send-btn mt-4 px-8 py-3.5 rounded-full text-white font-bold text-lg flex items-center gap-2 shadow-xl">
+    <i class="fa-brands fa-whatsapp text-2xl"></i> WhatsApp Us
+  </a>
+
+  <button onclick="closeMobileMenu()" class="absolute top-5 right-5 text-white/70 hover:text-white text-2xl p-2 transition">
+    <i class="fa-solid fa-xmark"></i>
+  </button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--                HERO SLIDER                      -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="swiper hero-swiper">
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide">
+        <img src="images/img1.jpeg" alt="Slide 1" loading="eager"/>
+        <div class="slide-overlay">
+          <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block" data-aos="fade-down">
+            🇿🇲 Zambia's Trusted Vehicle Importer
+          </span>
+          <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl" data-aos="fade-up" data-aos-delay="100">
+            CHANGE THE WAY<br/>
+            <span class="grad-text">YOU IMPORT A CAR!</span>
+          </h1>
+          <p class="text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light" data-aos="fade-up" data-aos-delay="200">
+            Let <strong class="text-white font-bold">SISIMA</strong> Handle The Rest.
+          </p>
+          <p class="text-sky-light text-sm md:text-base mt-2 tracking-widest font-semibold" data-aos="fade-up" data-aos-delay="250">
+            Easy &nbsp;·&nbsp; Safe &nbsp;·&nbsp; Reliable
+          </p>
+          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mt-8" data-aos="fade-up" data-aos-delay="320">
+            <a href="#process" class="btn-primary px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base">
+              <i class="fa-solid fa-comments mr-2"></i> Get a Quote
+            </a>
+            <a href="#beforward" class="btn-outline px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base">
+              <i class="fa-solid fa-paper-plane mr-2"></i> BeForward Reference
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <img src="images/img2.jpeg" alt="Slide 2"/>
+        <div class="slide-overlay">
+          <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block">
+            🚗 Direct Imports from Japan
+          </span>
+          <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl">
+            YOUR DREAM CAR,<br/><span class="grad-text-gold">DELIVERED TO YOUR DOOR.</span>
+          </h1>
+          <p class="text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
+            From Nakonde border post to your doorstep — handled every step of the way.
+          </p>
+          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
+            <a href="#stock" class="btn-gold px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base shadow-xl">
+              <i class="fa-solid fa-car mr-2"></i> View Vehicles
+            </a>
+            <a href="#contact" class="btn-outline px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base">
+              <i class="fa-solid fa-phone mr-2"></i> Call Us Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <img src="images/img3.jpeg" alt="Slide 3"/>
+        <div class="slide-overlay">
+          <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block">
+            🌍 Regional Logistics Leader
+          </span>
+          <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl">
+            OFFICES AT EVERY<br/><span class="grad-text">ZAMBIAN BORDER.</span>
+          </h1>
+          <p class="text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
+            Customs clearing, RIT, international delivery &amp; full freight logistics across Southern Africa.
+          </p>
+          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
+            <a href="#services" class="btn-primary px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base">
+              <i class="fa-solid fa-briefcase mr-2"></i> Our Services
+            </a>
+            <a href="#about" class="btn-outline px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base">
+              <i class="fa-solid fa-circle-info mr-2"></i> About Us
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="swiper-slide">
+        <img src="images/img4.jpeg" alt="Slide 4"/>
+        <div class="slide-overlay">
+          <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block">
+            🤝 Partnership Based on Trust
+          </span>
+          <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl">
+            TRANSPARENT.<br/><span class="grad-text-gold">HASSLE-FREE. TRUSTED.</span>
+          </h1>
+          <p class="text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
+            Structured, well-coordinated processes that put your peace of mind first.
+          </p>
+          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
+            <a href="https://wa.me/260977504807" target="_blank"
+               class="btn-gold px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base shadow-xl">
+              <i class="fa-brands fa-whatsapp mr-2"></i> Chat on WhatsApp
+            </a>
+            <a href="#process" class="btn-outline px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base">
+              <i class="fa-solid fa-list-ol mr-2"></i> How It Works
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+  </div>
+</section>
+
+<!-- Wave -->
+<div class="wave-divider -mt-1">
+  <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,20 C360,70 1080,-10 1440,30 L1440,60 L0,60 Z" fill="#f8fafc"/>
+  </svg>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--               TICKER STRIP                      -->
+<!-- ═══════════════════════════════════════════════ -->
+<div class="bg-sky-DEFAULT text-white py-2.5 overflow-hidden">
+  <div class="ticker-track text-sm font-semibold">
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-car text-white/70"></i> Japan Direct Imports</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-shield-halved text-white/70"></i> Fully Licensed &amp; Insured</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-map-location-dot text-white/70"></i> All Zambian Borders Covered</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-truck-fast text-white/70"></i> Door-to-Door Delivery</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-handshake text-white/70"></i> BeForward Authorised Agent</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-star text-gold-light"></i> Trusted Partner: SBT Japan</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-globe text-white/70"></i> Zimbabwe · Malawi · Tanzania · DRC · Mozambique</span>
+    <!-- Repeat for seamless loop -->
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-car text-white/70"></i> Japan Direct Imports</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-shield-halved text-white/70"></i> Fully Licensed &amp; Insured</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-map-location-dot text-white/70"></i> All Zambian Borders Covered</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-truck-fast text-white/70"></i> Door-to-Door Delivery</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-handshake text-white/70"></i> BeForward Authorised Agent</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-star text-gold-light"></i> Trusted Partner: SBT Japan</span>
+    <span class="mx-8 flex items-center gap-2 whitespace-nowrap"><i class="fa-solid fa-globe text-white/70"></i> Zimbabwe · Malawi · Tanzania · DRC · Mozambique</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--               STATS STRIP                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="bg-slate-50 py-12 px-4">
+  <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div data-aos="fade-up" data-aos-delay="0" class="hover-lift">
+      <p class="font-display font-black text-5xl grad-text stat-number" data-target="500">0</p>
+      <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mt-1">+</p>
+      <p class="text-navy font-semibold text-sm mt-1">Cars Delivered</p>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="100" class="hover-lift">
+      <p class="font-display font-black text-5xl grad-text stat-number" data-target="10">0</p>
+      <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mt-1">+</p>
+      <p class="text-navy font-semibold text-sm mt-1">Border Offices</p>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="200" class="hover-lift">
+      <p class="font-display font-black text-5xl grad-text stat-number" data-target="5">0</p>
+      <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mt-1">+</p>
+      <p class="text-navy font-semibold text-sm mt-1">Countries Served</p>
+    </div>
+    <div data-aos="fade-up" data-aos-delay="300" class="hover-lift">
+      <p class="font-display font-black text-5xl grad-text stat-number" data-target="100">0</p>
+      <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mt-1">%</p>
+      <p class="text-navy font-semibold text-sm mt-1">Customer Commitment</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--              ABOUT SECTION                      -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="about" class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+    <!-- Image Collage -->
+    <div class="relative" data-aos="fade-right" data-aos-duration="800">
+      <img src="images/img5.jpeg" alt="About Sisima"
+           class="w-full h-72 md:h-[440px] object-cover rounded-3xl shadow-2xl"/>
+      <div class="absolute -bottom-6 -right-6 w-36 h-36 rounded-2xl overflow-hidden shadow-xl border-4 border-white hidden sm:block">
+        <img src="images/logo.jpeg" alt="Sisima Logo" class="w-full h-full object-cover"/>
+      </div>
+      <!-- Floating trust badge -->
+      <div class="absolute top-5 left-5 bg-white/95 backdrop-blur-sm text-navy text-xs font-bold px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-sky-DEFAULT/20">
+        <i class="fa-solid fa-shield-halved text-sky-DEFAULT"></i> Trusted Since Day One
+      </div>
+      <!-- Experience badge -->
+      <div class="absolute -bottom-4 left-8 sm:-left-8 bg-sky-DEFAULT text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3">
+        <i class="fa-solid fa-award text-2xl text-gold-light"></i>
+        <div>
+          <p class="font-display font-black text-lg leading-none">100%</p>
+          <p class="text-xs text-sky-light">Satisfaction Rate</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+      <span class="section-pill"><i class="fa-solid fa-building"></i> Who We Are</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4 mb-5 leading-tight">
+        Your Premier <span class="grad-text">Vehicle &amp; Logistics</span> Partner in Zambia
+      </h2>
+      <p class="text-slate-600 text-base md:text-lg leading-relaxed mb-5">
+        <strong class="text-navy font-semibold">SISIMA GROUP ZAMBIA LIMITED</strong> is a premier vehicle sourcing,
+        customs clearing, freight, and logistics support provider. We ensure a hassle-free experience through
+        structured, transparent, and well-coordinated processes.
+      </p>
+      <p class="text-slate-600 text-base leading-relaxed mb-8">
+        We have <strong class="text-sky-DEFAULT font-semibold">offices at every border of Zambia</strong> which are
+        fully operational — ensuring your goods and vehicles are handled with utmost professionalism from port of
+        origin to final delivery.
+      </p>
+
+      <!-- Trust badges -->
+      <div class="flex flex-wrap gap-2.5 mb-8">
+        <span class="bg-sky-DEFAULT/8 text-sky-dark px-4 py-2 rounded-full text-sm font-semibold border border-sky-DEFAULT/20 flex items-center gap-1.5">
+          <i class="fa-solid fa-check-circle text-sky-DEFAULT"></i> Fully Licensed
+        </span>
+        <span class="bg-sky-DEFAULT/8 text-sky-dark px-4 py-2 rounded-full text-sm font-semibold border border-sky-DEFAULT/20 flex items-center gap-1.5">
+          <i class="fa-solid fa-check-circle text-sky-DEFAULT"></i> Japan Sourced
+        </span>
+        <span class="bg-sky-DEFAULT/8 text-sky-dark px-4 py-2 rounded-full text-sm font-semibold border border-sky-DEFAULT/20 flex items-center gap-1.5">
+          <i class="fa-solid fa-check-circle text-sky-DEFAULT"></i> Regional Coverage
+        </span>
+        <span class="bg-gold/10 text-amber-700 px-4 py-2 rounded-full text-sm font-semibold border border-gold/30 flex items-center gap-1.5">
+          <i class="fa-solid fa-star text-gold"></i> SBT Trusted Partner
+        </span>
+      </div>
+
+      <!-- Tagline -->
+      <div class="border-l-4 border-gold pl-5 bg-slate-50 py-3 pr-4 rounded-r-xl">
+        <p class="font-display font-black text-xl text-navy">"Partnership Based on Trust."</p>
+        <p class="text-slate-500 text-sm mt-1">— SISIMA GROUP ZAMBIA LIMITED &amp; MJS &amp; IRE Freight Limited</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--             SERVICES SECTION                    -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="services" class="py-20 px-4 bg-slate-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="section-pill"><i class="fa-solid fa-briefcase"></i> What We Offer</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4">
+        Comprehensive <span class="grad-text">Services</span>
+      </h2>
+      <p class="text-slate-500 mt-3 max-w-xl mx-auto leading-relaxed">
+        End-to-end solutions — from sourcing your car in Japan to delivering it at your doorstep across Zambia and beyond.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <div class="service-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="0">
+        <div class="service-icon-ring w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
+          <i class="fa-solid fa-car text-white text-2xl"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-navy mb-3">Direct Vehicle Sales</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">
+          We sell motor vehicles imported straight from Japan — quality assured, competitively priced, ready for Zambian roads.
+        </p>
+        <div class="mt-5 pt-4 border-t border-slate-100">
+          <a href="#stock" class="text-sky-DEFAULT text-sm font-bold hover:text-sky-dark transition flex items-center gap-1 group">
+            View Stock <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-icon-ring w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
+          <i class="fa-solid fa-truck-fast text-white text-2xl"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-navy mb-3">Border to Doorstep</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">
+          Professional drivers ready to collect your car at the border and deliver it in perfect condition, anywhere in Zambia.
+        </p>
+        <div class="mt-5 pt-4 border-t border-slate-100">
+          <a href="#contact" class="text-sky-DEFAULT text-sm font-bold hover:text-sky-dark transition flex items-center gap-1 group">
+            Enquire Now <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-icon-ring w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
+          <i class="fa-solid fa-file-invoice-dollar text-white text-2xl"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-navy mb-3">Customs Clearing &amp; RIT</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">
+          Full customs clearance for goods entering Zambia, plus professional RIT clearing for transit goods to neighboring countries.
+        </p>
+        <div class="mt-5 pt-4 border-t border-slate-100">
+          <a href="#contact" class="text-sky-DEFAULT text-sm font-bold hover:text-sky-dark transition flex items-center gap-1 group">
+            Learn More <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="service-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-icon-ring w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
+          <i class="fa-solid fa-globe text-white text-2xl"></i>
+        </div>
+        <h3 class="font-display font-bold text-xl text-navy mb-3">International Delivery</h3>
+        <p class="text-slate-500 text-sm leading-relaxed">
+          We deliver vehicles to other countries surrounding Zambia — Zimbabwe, Malawi, Tanzania, DRC, and more.
+        </p>
+        <div class="mt-5 pt-4 border-t border-slate-100">
+          <a href="#contact" class="text-sky-DEFAULT text-sm font-bold hover:text-sky-dark transition flex items-center gap-1 group">
+            Get a Quote <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--          BEFORWARD PROCESS SECTION              -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="process" class="py-20 px-4" style="background: linear-gradient(160deg, #0F172A 0%, #1E293B 60%, #0F172A 100%);">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="inline-flex items-center gap-2 bg-white/10 border border-white/15 text-sky-light text-xs font-bold px-4 py-1.5 rounded-full tracking-widest uppercase mb-4">
+        <i class="fa-solid fa-rocket"></i> Your Simple Path to Ownership
+      </span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-white mt-2">
+        The <span class="grad-text">BeForward</span> Sourcing Process
+      </h2>
+      <p class="text-slate-400 mt-3 max-w-xl mx-auto">
+        Find your dream car on BeForward.com and let SISIMA handle everything else in just 4 easy steps.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-0 mb-16">
+
+      <div class="flex flex-col items-center text-center md:flex-1" data-aos="fade-up" data-aos-delay="0">
+        <div class="w-16 h-16 rounded-full bg-sky-DEFAULT flex items-center justify-center shadow-lg shadow-sky-DEFAULT/40 mb-4 text-white text-xl font-black font-display ring-4 ring-sky-DEFAULT/20">1</div>
+        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-3 border border-white/10">
+          <i class="fa-solid fa-magnifying-glass text-sky-light text-xl"></i>
+        </div>
+        <h4 class="text-white font-bold text-base mb-1">FIND Your Car</h4>
+        <p class="text-slate-400 text-sm max-w-[130px]">Browse on <a href="https://www.beforward.jp" target="_blank" class="text-sky-light underline hover:text-white">BeForward.com</a> or SBT Japan</p>
+      </div>
+
+      <div class="step-line hidden md:block mt-8 mx-2"></div>
+
+      <div class="flex flex-col items-center text-center md:flex-1" data-aos="fade-up" data-aos-delay="100">
+        <div class="w-16 h-16 rounded-full bg-sky-DEFAULT flex items-center justify-center shadow-lg shadow-sky-DEFAULT/40 mb-4 text-white text-xl font-black font-display ring-4 ring-sky-DEFAULT/20">2</div>
+        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-3 border border-white/10">
+          <i class="fa-regular fa-copy text-sky-light text-xl"></i>
+        </div>
+        <h4 class="text-white font-bold text-base mb-1">COPY Reference</h4>
+        <p class="text-slate-400 text-sm max-w-[130px]">Copy the vehicle reference number</p>
+      </div>
+
+      <div class="step-line hidden md:block mt-8 mx-2"></div>
+
+      <div class="flex flex-col items-center text-center md:flex-1" data-aos="fade-up" data-aos-delay="200">
+        <div class="w-16 h-16 rounded-full bg-sky-DEFAULT flex items-center justify-center shadow-lg shadow-sky-DEFAULT/40 mb-4 text-white text-xl font-black font-display ring-4 ring-sky-DEFAULT/20">3</div>
+        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-3 border border-white/10">
+          <i class="fa-solid fa-globe text-sky-light text-xl"></i>
+        </div>
+        <h4 class="text-white font-bold text-base mb-1">VISIT Our Site</h4>
+        <p class="text-slate-400 text-sm max-w-[130px]">Go to <span class="text-sky-light font-semibold">sisimagroups.com</span></p>
+      </div>
+
+      <div class="step-line hidden md:block mt-8 mx-2"></div>
+
+      <div class="flex flex-col items-center text-center md:flex-1" data-aos="fade-up" data-aos-delay="300">
+        <div class="w-16 h-16 rounded-full bg-gold flex items-center justify-center shadow-lg shadow-gold/40 mb-4 text-navy text-xl font-black font-display ring-4 ring-gold/20">4</div>
+        <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center mb-3 border border-white/10">
+          <i class="fa-brands fa-whatsapp text-green-400 text-xl"></i>
+        </div>
+        <h4 class="text-white font-bold text-base mb-1">SEND Reference</h4>
+        <p class="text-slate-400 text-sm max-w-[130px]">Submit via our form or chatbox below</p>
+      </div>
+
+    </div>
+
+    <!-- WhatsApp Input Widget -->
+    <div id="beforward" class="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-sm max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-green-500 flex items-center justify-center flex-shrink-0">
+          <i class="fa-brands fa-whatsapp text-white text-2xl"></i>
+        </div>
+        <div>
+          <p class="text-white font-bold text-lg">Submit Your BeForward Reference</p>
+          <p class="text-slate-400 text-xs">We'll respond instantly on WhatsApp</p>
+        </div>
+      </div>
+      <label class="text-slate-300 text-sm font-semibold block mb-2">BeForward / SBT Reference Number</label>
+      <div class="relative mb-4">
+        <input id="beforward-input" type="text" placeholder="e.g. SIE-123456 or SBT-789012"
+               class="w-full bg-white/8 border border-white/20 text-white placeholder-slate-500 rounded-xl px-4 py-3.5 text-sm pr-12 focus:outline-none focus:border-sky-DEFAULT focus:ring-2 focus:ring-sky-DEFAULT/25 transition"/>
+        <button onclick="clearInput()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition text-sm" title="Clear">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <button onclick="sendToWhatsApp()"
+              class="wa-send-btn w-full py-4 rounded-xl text-white font-bold text-base flex items-center justify-center gap-2 shadow-xl transition">
+        <i class="fa-brands fa-whatsapp text-xl"></i> Send to WhatsApp
+      </button>
+      <p class="text-slate-500 text-xs text-center mt-3">
+        <i class="fa-solid fa-lock mr-1"></i> You'll be redirected to WhatsApp with your reference pre-filled.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--           VEHICLES IN STOCK                     -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="stock" class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="section-pill"><i class="fa-solid fa-location-dot"></i> Available at Nakonde Border Post</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4">
+        Vehicles <span class="grad-text">In Stock</span>
+      </h2>
+      <p class="text-slate-500 mt-3 max-w-xl mx-auto">
+        Freshly imported, cleared and ready for purchase. Contact us for pricing and full specifications.
+      </p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8" data-aos="fade-up">
+      <button onclick="filterVehicles('all')" class="filter-btn active px-5 py-2 rounded-full text-sm font-semibold transition-all" data-filter="all">All Vehicles</button>
+      <button onclick="filterVehicles('suv')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-filter="suv">SUVs</button>
+      <button onclick="filterVehicles('pickup')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-filter="pickup">Pickups</button>
+      <button onclick="filterVehicles('arriving')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-filter="arriving">Arriving Soon</button>
+    </div>
+
+    <style>
+      .filter-btn { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
+      .filter-btn.active { background: var(--sky); color: #fff; border-color: var(--sky); box-shadow: 0 4px 16px rgba(14,165,233,.35); }
+      .filter-btn:hover:not(.active) { background: rgba(14,165,233,.08); border-color: rgba(14,165,233,.3); color: var(--sky); }
+    </style>
+
+    <div class="swiper stock-swiper" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper-wrapper pb-4">
+
+        <div class="swiper-slide" data-category="suv">
+          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
+            <div class="relative h-52 overflow-hidden bg-slate-100">
+              <img src="images/img6.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+              <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">IN STOCK</span>
+              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
+            </div>
+            <div class="p-5">
+              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">SUV · Japan Import</p>
+              <h4 class="font-display font-bold text-xl text-navy">Toyota Land Cruiser Prado</h4>
+              <p class="text-slate-500 text-sm mt-1">Available at Nakonde — Low Mileage, Excellent Condition</p>
+              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Diesel</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Auto</span>
+              </div>
+              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I am interested in the Toyota Land Cruiser Prado in stock."
+                 target="_blank"
+                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
+                <i class="fa-solid fa-cart-shopping mr-1"></i> View Details / Buy Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide" data-category="suv">
+          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
+            <div class="relative h-52 overflow-hidden bg-slate-100">
+              <img src="images/img7.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+              <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">IN STOCK</span>
+              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
+            </div>
+            <div class="p-5">
+              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">SUV · Japan Import</p>
+              <h4 class="font-display font-bold text-xl text-navy">Nissan X-Trail</h4>
+              <p class="text-slate-500 text-sm mt-1">Available at Nakonde — Well Maintained, Family Ready</p>
+              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Petrol</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Auto</span>
+              </div>
+              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I am interested in the Nissan X-Trail in stock."
+                 target="_blank"
+                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
+                <i class="fa-solid fa-cart-shopping mr-1"></i> View Details / Buy Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide" data-category="pickup">
+          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
+            <div class="relative h-52 overflow-hidden bg-slate-100">
+              <img src="images/img1.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+              <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">AVAILABLE</span>
+              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
+            </div>
+            <div class="p-5">
+              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">Pickup · Japan Import</p>
+              <h4 class="font-display font-bold text-xl text-navy">Toyota Hilux Double Cab</h4>
+              <p class="text-slate-500 text-sm mt-1">Available at Nakonde — Heavy Duty, Road Ready</p>
+              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Diesel</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Manual</span>
+              </div>
+              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I am interested in the Toyota Hilux Double Cab in stock."
+                 target="_blank"
+                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
+                <i class="fa-solid fa-cart-shopping mr-1"></i> View Details / Buy Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide" data-category="suv">
+          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
+            <div class="relative h-52 overflow-hidden bg-slate-100">
+              <img src="images/img2.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+              <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">IN STOCK</span>
+              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
+            </div>
+            <div class="p-5">
+              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">SUV · Japan Import</p>
+              <h4 class="font-display font-bold text-xl text-navy">Honda CRV</h4>
+              <p class="text-slate-500 text-sm mt-1">Available at Nakonde — Spacious, Fuel Efficient SUV</p>
+              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Petrol</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Auto</span>
+              </div>
+              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I am interested in the Honda CRV in stock."
+                 target="_blank"
+                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
+                <i class="fa-solid fa-cart-shopping mr-1"></i> View Details / Buy Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-slide" data-category="arriving">
+          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
+            <div class="relative h-52 overflow-hidden bg-slate-100">
+              <img src="images/img3.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
+              <span class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">ARRIVING SOON</span>
+              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
+            </div>
+            <div class="p-5">
+              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">SUV · Japan Import</p>
+              <h4 class="font-display font-bold text-xl text-navy">Mitsubishi Pajero</h4>
+              <p class="text-slate-500 text-sm mt-1">Arriving at Nakonde — Reserve Yours Today!</p>
+              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Diesel</span>
+                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Auto</span>
+              </div>
+              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I want to reserve the Mitsubishi Pajero arriving soon."
+                 target="_blank"
+                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
+                <i class="fa-solid fa-clock mr-1"></i> Reserve Now
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="swiper-pagination mt-4"></div>
+    </div>
+
+    <div class="text-center mt-10" data-aos="fade-up">
+      <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I would like to see all vehicles currently in stock."
+         target="_blank"
+         class="btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-base shadow-xl">
+        <i class="fa-brands fa-whatsapp text-xl"></i> Ask For Full Stock List
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--            WHY CHOOSE US BANNER                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="py-16 px-4" style="background: linear-gradient(135deg, #0EA5E9 0%, #0284C7 50%, #0369A1 100%);">
+  <div class="max-w-5xl mx-auto" data-aos="fade-up">
+    <div class="text-center mb-10">
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-white">
+        Why Thousands Choose <span style="color:#FDE68A;">SISIMA GROUP?</span>
+      </h2>
+      <p class="text-white/75 text-base mt-3 max-w-2xl mx-auto">
+        We don't just sell cars — we build lasting relationships on transparency, speed, and trust.
+      </p>
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-white/10 rounded-2xl p-5 border border-white/15 text-white text-center hover-lift backdrop-blur-sm">
+        <i class="fa-solid fa-hand-holding-dollar text-3xl mb-3" style="color:#FDE68A;"></i>
+        <p class="font-bold text-sm">Competitive Pricing</p>
+        <p class="text-white/60 text-xs mt-1">Best rates in Zambia</p>
+      </div>
+      <div class="bg-white/10 rounded-2xl p-5 border border-white/15 text-white text-center hover-lift backdrop-blur-sm">
+        <i class="fa-solid fa-clock text-3xl mb-3" style="color:#FDE68A;"></i>
+        <p class="font-bold text-sm">Fast Turnaround</p>
+        <p class="text-white/60 text-xs mt-1">Efficient processing</p>
+      </div>
+      <div class="bg-white/10 rounded-2xl p-5 border border-white/15 text-white text-center hover-lift backdrop-blur-sm">
+        <i class="fa-solid fa-map-location-dot text-3xl mb-3" style="color:#FDE68A;"></i>
+        <p class="font-bold text-sm">All Zambia Borders</p>
+        <p class="text-white/60 text-xs mt-1">Nationwide offices</p>
+      </div>
+      <div class="bg-white/10 rounded-2xl p-5 border border-white/15 text-white text-center hover-lift backdrop-blur-sm">
+        <i class="fa-solid fa-headset text-3xl mb-3" style="color:#FDE68A;"></i>
+        <p class="font-bold text-sm">24/7 Support</p>
+        <p class="text-white/60 text-xs mt-1">Always available</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--           PARTNERS & AFFILIATES                 -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="partners" class="py-20 px-4 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="section-pill"><i class="fa-solid fa-handshake"></i> Trusted Network</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4">
+        Our Partners &amp; <span class="grad-text">Affiliates</span>
+      </h2>
+      <p class="text-slate-500 mt-3 max-w-xl mx-auto leading-relaxed">
+        We work alongside the most reputable vehicle exporters, logistics companies, and trust partners to give you the best experience possible.
+      </p>
+    </div>
+
+    <!-- Vehicle Sourcing Partners -->
+    <div class="mb-12">
+      <h3 class="text-center font-display font-black text-xl text-navy mb-6 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-car text-sky-DEFAULT"></i> Vehicle Sourcing Partners
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- BeForward -->
+        <a href="https://www.beforward.jp" target="_blank" rel="noopener" class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="0">
+          <div class="partner-logo-img-box group-hover:scale-105 transition-transform">
+            <img src="images/bforward.png" alt="BE FORWARD Japan"/>
+          </div>
+          <p class="text-slate-800 text-sm font-bold">BE FORWARD Japan</p>
+          <p class="text-slate-500 text-xs mt-0.5">Japan's #1 Used Car Exporter</p>
+          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold mt-2 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
+            <i class="fa-solid fa-circle-check text-xs"></i> Authorised Agent
+          </span>
+        </a>
+
+        <!-- SBT Japan -->
+        <a href="https://www.sbtjapan.com" target="_blank" rel="noopener" class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="100">
+          <div class="partner-logo-img-box group-hover:scale-105 transition-transform">
+            <img src="images/sbt.png" alt="SBT Japan"/>
+          </div>
+          <p class="text-slate-800 text-sm font-bold">SBT Japan</p>
+          <p class="text-slate-500 text-xs mt-0.5">Global Used Car Exporter since 1993</p>
+          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold mt-2 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
+            <i class="fa-solid fa-circle-check text-xs"></i> Trust Partner
+          </span>
+        </a>
+
+        <!-- Trust Companies -->
+        <a href="https://www.trust-ltd.co.jp/en/" target="_blank" rel="noopener" class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="200">
+          <div class="partner-logo-img-box group-hover:scale-105 transition-transform">
+            <img src="images/trustcompanies.png" alt="Trust Co., Ltd. Japan"/>
+          </div>
+          <p class="text-slate-800 text-sm font-bold">Trust Co., Ltd. Japan</p>
+          <p class="text-slate-500 text-xs mt-0.5">Pioneer Exporter — Est. 1988, 160+ Countries</p>
+          <span class="inline-flex items-center gap-1 text-xs text-sky-600 font-semibold mt-2 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-100">
+            <i class="fa-solid fa-star text-xs"></i> Preferred Partner
+          </span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Logistics Partners -->
+    <div class="mb-12">
+      <h3 class="text-center font-display font-black text-xl text-navy mb-6 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-truck-fast text-sky-DEFAULT"></i> Logistics &amp; Freight Partners
+      </h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <!-- MJS & IRE Freight — branded badge -->
+        <div class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="0">
+          <div class="partner-logo-img-box group-hover:scale-105 transition-transform" style="background:linear-gradient(135deg,#0284C7,#0F172A);border-color:#0284C7">
+            <i class="fa-solid fa-truck text-white text-2xl mr-2"></i>
+            <div class="text-left">
+              <p class="text-white font-black text-sm leading-tight font-display">MJS &amp; IRE</p>
+              <p class="text-sky-200 text-[9px] font-semibold uppercase tracking-wider">Freight Ltd</p>
+            </div>
+          </div>
+          <p class="text-slate-800 text-sm font-bold">MJS &amp; IRE Freight Ltd</p>
+          <p class="text-slate-500 text-xs mt-0.5">Our Primary Freight &amp; Logistics Arm</p>
+          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold mt-2 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
+            <i class="fa-solid fa-circle-check text-xs"></i> Official Partner
+          </span>
+        </div>
+
+        <!-- QP Groups Zambia — branded badge -->
+        <div class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="100">
+          <div class="partner-logo-img-box group-hover:scale-105 transition-transform" style="background:linear-gradient(135deg,#4F46E5,#1E1B4B);border-color:#4F46E5">
+            <i class="fa-solid fa-building text-white text-2xl mr-2"></i>
+            <div class="text-left">
+              <p class="text-white font-black text-sm leading-tight font-display">QP GROUPS</p>
+              <p class="text-indigo-200 text-[9px] font-semibold uppercase tracking-wider">Zambia</p>
+            </div>
+          </div>
+          <p class="text-slate-800 text-sm font-bold">QP Groups Zambia</p>
+          <p class="text-slate-500 text-xs mt-0.5">Corporate &amp; Freight Solutions</p>
+          <span class="inline-flex items-center gap-1 text-xs text-sky-600 font-semibold mt-2 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-100">
+            <i class="fa-solid fa-star text-xs"></i> Affiliated Partner
+          </span>
+        </div>
+
+        <!-- Zambia Revenue Authority -->
+        <a href="https://www.zra.org.zm" target="_blank" rel="noopener" class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="200">
+          <div class="partner-logo-img-box group-hover:scale-105 transition-transform">
+            <img src="images/zra.png" alt="Zambia Revenue Authority"/>
+          </div>
+          <p class="text-slate-800 text-sm font-bold">Zambia Revenue Authority</p>
+          <p class="text-slate-500 text-xs mt-0.5">Licensed Customs Clearing Agent</p>
+          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold mt-2 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
+            <i class="fa-solid fa-circle-check text-xs"></i> Government Registered
+          </span>
+        </a>
+
+      </div>
+    </div>
+
+    <!-- Regional Service Countries -->
+    <div data-aos="fade-up" class="bg-slate-50 rounded-3xl p-8 border border-slate-100">
+      <h3 class="text-center font-display font-black text-xl text-navy mb-6 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-globe-africa text-sky-DEFAULT"></i> Countries We Serve
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇿🇲 Zambia</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇿🇼 Zimbabwe</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇲🇼 Malawi</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇹🇿 Tanzania</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇨🇩 DRC Congo</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇲🇿 Mozambique</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇧🇼 Botswana</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--              TESTIMONIALS                       -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="py-20 px-4 bg-slate-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="section-pill"><i class="fa-solid fa-star"></i> Client Experiences</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4">
+        What Our Clients <span class="grad-text">Say</span>
+      </h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="testimonial-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="0">
+        <div class="flex gap-1 mb-4">
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed italic mb-5">
+          "SISIMA GROUP made the whole process seamless. I found a Prado on BeForward, sent my reference number, and within weeks the car was cleared and delivered. Highly professional!"
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-10 h-10 rounded-full bg-sky-DEFAULT flex items-center justify-center text-white font-black text-sm">M</div>
+          <div>
+            <p class="font-bold text-navy text-sm">Mr. Mwango</p>
+            <p class="text-slate-400 text-xs">Lusaka, Zambia</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="100">
+        <div class="flex gap-1 mb-4">
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed italic mb-5">
+          "Best customs clearing agents I've ever worked with. Our freight from Tanzania was handled perfectly. No delays, no hidden costs — just pure professionalism."
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-10 h-10 rounded-full bg-gold flex items-center justify-center text-white font-black text-sm">C</div>
+          <div>
+            <p class="font-bold text-navy text-sm">Ms. Chileshe</p>
+            <p class="text-slate-400 text-xs">Nakonde, Zambia</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="200">
+        <div class="flex gap-1 mb-4">
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+          <i class="fa-solid fa-star text-gold text-sm"></i>
+        </div>
+        <p class="text-slate-600 text-sm leading-relaxed italic mb-5">
+          "I'm in Zimbabwe and ordered a vehicle through SISIMA. They delivered it right to my doorstep across the border. Exceptional service — I recommend them to everyone!"
+        </p>
+        <div class="flex items-center gap-3 pt-4 border-t border-slate-100">
+          <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white font-black text-sm">T</div>
+          <div>
+            <p class="font-bold text-navy text-sm">Mr. Tafadzwa</p>
+            <p class="text-slate-400 text-xs">Harare, Zimbabwe</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--                   FAQ                           -->
+<!-- ═══════════════════════════════════════════════ -->
+<section class="py-20 px-4 bg-white">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="section-pill"><i class="fa-solid fa-circle-question"></i> Common Questions</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4">
+        Frequently Asked <span class="grad-text">Questions</span>
+      </h2>
+    </div>
+
+    <div class="space-y-3" data-aos="fade-up" data-aos-delay="100">
+
+      <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-navy hover:bg-slate-50 transition gap-4">
+          <span>How do I use my BeForward reference number?</span>
+          <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
+          <div class="pb-5">
+            Simply browse BeForward.com or SBT Japan, find the vehicle you want, and copy the reference number (e.g. SIE-123456). Then come to our website and paste it in the BeForward form above, or send it directly to us on WhatsApp. We'll handle everything from there — auction bidding, shipping, customs clearance, and delivery.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-navy hover:bg-slate-50 transition gap-4">
+          <span>How long does the vehicle import process take?</span>
+          <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
+          <div class="pb-5">
+            Typically, the full process takes 6–10 weeks from auction purchase to delivery at your location. This includes shipping from Japan (4–6 weeks), customs clearance at Nakonde (1–2 weeks), and local delivery. We keep you updated at every stage of the journey.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-navy hover:bg-slate-50 transition gap-4">
+          <span>Can you deliver to countries outside Zambia?</span>
+          <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
+          <div class="pb-5">
+            Yes! We deliver to Zimbabwe, Malawi, Tanzania, DRC Congo, Mozambique, Botswana, and other neighboring countries. We handle RIT (Road In Transit) documentation and international customs clearance through our established network.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-navy hover:bg-slate-50 transition gap-4">
+          <span>What payment methods do you accept?</span>
+          <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
+          <div class="pb-5">
+            We accept bank transfers (Kwacha and USD), mobile money (MTN/Airtel), and cash payments at our offices. For international transactions, we use wire transfers. Please contact us on WhatsApp to get our banking details and payment schedule.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item border border-slate-200 rounded-2xl overflow-hidden">
+        <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between p-5 text-left font-semibold text-navy hover:bg-slate-50 transition gap-4">
+          <span>Do you provide customs clearing for non-vehicle goods?</span>
+          <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
+          <div class="pb-5">
+            Absolutely! We clear all types of goods — electronics, machinery, household goods, commercial freight, and more. Our agents are stationed at all major Zambian border posts including Nakonde, Chirundu, Kazungula, and others.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--              CONTACT SECTION                    -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="contact" class="py-20 px-4 bg-slate-50">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-14" data-aos="fade-up">
+      <span class="section-pill"><i class="fa-solid fa-envelope"></i> Get In Touch</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4">
+        Contact <span class="grad-text">SISIMA GROUP</span>
+      </h2>
+      <p class="text-slate-500 mt-3 max-w-xl mx-auto">
+        Our team is always ready to assist you — reach us via phone, email, WhatsApp or visit our office.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-start">
+
+      <!-- Contact Info Card -->
+      <div class="bg-white rounded-3xl shadow-sm border border-slate-100 p-8" data-aos="fade-right">
+
+        <div class="contact-item flex items-start gap-4 p-4 mb-1 transition">
+          <div class="w-12 h-12 rounded-2xl bg-sky-DEFAULT/10 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-location-dot text-sky-DEFAULT text-xl"></i>
+          </div>
+          <div>
+            <p class="text-navy font-bold text-sm mb-1">Head Office</p>
+            <p class="text-slate-500 text-sm leading-relaxed">
+              SISIMA HQ, Nakonde Town. Off-Great North Road.<br/>
+              Opposite Ikumbi Complex, Room 5 Ntindi Village.
+            </p>
+          </div>
+        </div>
+
+        <div class="h-px bg-slate-100 my-1"></div>
+
+        <div class="contact-item flex items-start gap-4 p-4 mb-1 transition">
+          <div class="w-12 h-12 rounded-2xl bg-sky-DEFAULT/10 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-phone text-sky-DEFAULT text-xl"></i>
+          </div>
+          <div>
+            <p class="text-navy font-bold text-sm mb-1.5">Call Us</p>
+            <a href="tel:+260977504807" class="text-sky-DEFAULT font-semibold text-sm block hover:text-sky-dark transition">+260 977 504 807</a>
+            <a href="tel:+260965528058" class="text-sky-DEFAULT font-semibold text-sm block hover:text-sky-dark transition">+260 965 528 058</a>
+            <a href="tel:+260770649454" class="text-sky-DEFAULT font-semibold text-sm block hover:text-sky-dark transition">+260 770 649 454</a>
+          </div>
+        </div>
+
+        <div class="h-px bg-slate-100 my-1"></div>
+
+        <div class="contact-item flex items-start gap-4 p-4 mb-1 transition">
+          <div class="w-12 h-12 rounded-2xl bg-sky-DEFAULT/10 flex items-center justify-center flex-shrink-0">
+            <i class="fa-solid fa-envelope text-sky-DEFAULT text-xl"></i>
+          </div>
+          <div>
+            <p class="text-navy font-bold text-sm mb-1.5">Email Us</p>
+            <a href="mailto:SISIMA@QPGROUPSZAMBIA.COM" class="text-sky-DEFAULT font-semibold text-sm block hover:text-sky-dark transition break-all">SISIMA@QPGROUPSZAMBIA.COM</a>
+            <a href="mailto:SISIMAGROUP.ZAMBIALTD@GMAIL.COM" class="text-sky-DEFAULT font-semibold text-sm block hover:text-sky-dark transition break-all">SISIMAGROUP.ZAMBIALTD@GMAIL.COM</a>
+          </div>
+        </div>
+
+        <div class="h-px bg-slate-100 my-1"></div>
+
+        <div class="contact-item flex items-start gap-4 p-4 transition">
+          <div class="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center flex-shrink-0">
+            <i class="fa-brands fa-facebook text-blue-600 text-xl"></i>
+          </div>
+          <div>
+            <p class="text-navy font-bold text-sm mb-1.5">Follow Us</p>
+            <a href="https://www.facebook.com/search/top?q=SISIMA+CAR+DEALERS" target="_blank"
+               class="text-blue-600 font-semibold text-sm hover:text-blue-800 transition flex items-center gap-1">
+              SISIMA CAR DEALERS <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Map + Extras -->
+      <div class="flex flex-col gap-5" data-aos="fade-left" data-aos-delay="100">
+
+        <!-- Map Embed -->
+        <div class="rounded-2xl overflow-hidden shadow-sm border border-slate-100 h-56">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31012.5!2d32.74!3d-9.38!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x19971e0b0b0b0b01%3A0x0!2sNakonde%2C+Zambia!5e0!3m2!1sen!2szm!4v1700000000000"
+            width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="Sisima Office Location">
+          </iframe>
+        </div>
+
+        <!-- WhatsApp CTA -->
+        <div class="bg-gradient-to-br from-green-500 to-green-700 rounded-2xl p-6 text-white text-center shadow-xl">
+          <i class="fa-brands fa-whatsapp text-5xl mb-3"></i>
+          <h3 class="font-display font-black text-2xl mb-2">Chat With Us Now!</h3>
+          <p class="text-white/80 text-sm mb-5">Get instant responses, vehicle availability &amp; pricing — all on WhatsApp.</p>
+          <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I would like to inquire about your vehicles and services."
+             target="_blank"
+             class="inline-block bg-white text-green-700 font-black px-8 py-3 rounded-full shadow-lg hover:scale-105 transition text-sm">
+            <i class="fa-brands fa-whatsapp mr-2"></i> Start WhatsApp Chat
+          </a>
+        </div>
+
+        <!-- Office Hours -->
+        <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
+          <h4 class="text-navy font-bold mb-4 flex items-center gap-2">
+            <i class="fa-solid fa-clock text-sky-DEFAULT"></i> Office Hours
+          </h4>
+          <div class="space-y-2.5 text-sm">
+            <div class="flex justify-between text-slate-600">
+              <span>Monday – Friday</span><span class="font-bold text-navy">08:00 – 17:00</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>Saturday</span><span class="font-bold text-navy">08:00 – 13:00</span>
+            </div>
+            <div class="flex justify-between text-slate-600">
+              <span>Sunday</span><span class="font-bold text-red-500">By Appointment</span>
+            </div>
+          </div>
+          <p class="text-xs text-slate-400 mt-4 flex items-start gap-1">
+            <i class="fa-solid fa-info-circle mt-0.5 text-sky-DEFAULT"></i>
+            WhatsApp enquiries are attended to even after hours.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--                  FOOTER                         -->
+<!-- ═══════════════════════════════════════════════ -->
+<footer class="bg-navy text-white pt-16 pb-8 px-4" style="background: linear-gradient(160deg, #0A0F1E 0%, #0F172A 100%);">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Top section -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14 pb-14 border-b border-white/10">
+
+      <!-- Brand -->
+      <div class="lg:col-span-1">
+        <div class="flex items-center gap-3 mb-5">
+          <img src="images/logo.jpeg" alt="Logo" class="h-14 w-14 rounded-full object-cover ring-2 ring-sky-DEFAULT/50"/>
+          <div>
+            <p class="font-display font-black text-lg text-white">SISIMA GROUP</p>
+            <p class="text-sky-light text-xs tracking-widest uppercase opacity-75">Zambia Limited</p>
+          </div>
+        </div>
+        <p class="text-slate-400 text-sm leading-relaxed mb-5">
+          In partnership with <strong class="text-white">MJS &amp; IRE Freight Limited</strong>.
+          Your trusted vehicle sourcing and logistics partner across Zambia and Southern Africa.
+        </p>
+        <p class="italic text-sky-light text-sm font-semibold border-l-2 border-sky-DEFAULT pl-3">"Partnership Based on Trust."</p>
+
+        <!-- Social -->
+        <div class="flex items-center gap-3 mt-6">
+          <a href="https://wa.me/260977504807" target="_blank"
+             class="w-10 h-10 rounded-full bg-green-600/20 border border-green-600/30 flex items-center justify-center hover:bg-green-600/50 transition">
+            <i class="fa-brands fa-whatsapp text-green-400"></i>
+          </a>
+          <a href="https://www.facebook.com/search/top?q=SISIMA+CAR+DEALERS" target="_blank"
+             class="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-600/30 flex items-center justify-center hover:bg-blue-600/50 transition">
+            <i class="fa-brands fa-facebook text-blue-400"></i>
+          </a>
+          <a href="mailto:SISIMAGROUP.ZAMBIALTD@GMAIL.COM"
+             class="w-10 h-10 rounded-full bg-sky-DEFAULT/20 border border-sky-DEFAULT/30 flex items-center justify-center hover:bg-sky-DEFAULT/50 transition">
+            <i class="fa-solid fa-envelope text-sky-light"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-display font-black text-sm tracking-widest uppercase text-sky-light mb-6">Quick Links</h4>
+        <ul class="space-y-3 text-slate-400 text-sm">
+          <li><a href="#about"    class="hover:text-white transition flex items-center gap-2 group"><i class="fa-solid fa-chevron-right text-xs text-sky-DEFAULT group-hover:translate-x-1 transition-transform"></i> About Us</a></li>
+          <li><a href="#services" class="hover:text-white transition flex items-center gap-2 group"><i class="fa-solid fa-chevron-right text-xs text-sky-DEFAULT group-hover:translate-x-1 transition-transform"></i> Our Services</a></li>
+          <li><a href="#process"  class="hover:text-white transition flex items-center gap-2 group"><i class="fa-solid fa-chevron-right text-xs text-sky-DEFAULT group-hover:translate-x-1 transition-transform"></i> How It Works</a></li>
+          <li><a href="#stock"    class="hover:text-white transition flex items-center gap-2 group"><i class="fa-solid fa-chevron-right text-xs text-sky-DEFAULT group-hover:translate-x-1 transition-transform"></i> Vehicles In Stock</a></li>
+          <li><a href="#partners" class="hover:text-white transition flex items-center gap-2 group"><i class="fa-solid fa-chevron-right text-xs text-sky-DEFAULT group-hover:translate-x-1 transition-transform"></i> Our Partners</a></li>
+          <li><a href="#contact"  class="hover:text-white transition flex items-center gap-2 group"><i class="fa-solid fa-chevron-right text-xs text-sky-DEFAULT group-hover:translate-x-1 transition-transform"></i> Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Partners -->
+      <div>
+        <h4 class="font-display font-black text-sm tracking-widest uppercase text-sky-light mb-6">Key Partners</h4>
+        <ul class="space-y-3 text-slate-400 text-sm">
+          <li class="flex items-center gap-2"><i class="fa-solid fa-car text-sky-DEFAULT text-xs"></i> BeForward Japan</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-ship text-sky-DEFAULT text-xs"></i> SBT Japan</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-truck text-sky-DEFAULT text-xs"></i> MJS &amp; IRE Freight Ltd</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-building text-sky-DEFAULT text-xs"></i> QP Groups Zambia</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-sky-DEFAULT text-xs"></i> Trust Co., Ltd. Japan</li>
+          <li class="flex items-center gap-2"><i class="fa-solid fa-landmark text-sky-DEFAULT text-xs"></i> ZRA Registered Agent</li>
+        </ul>
+      </div>
+
+      <!-- Contact Summary -->
+      <div>
+        <h4 class="font-display font-black text-sm tracking-widest uppercase text-sky-light mb-6">Contact Info</h4>
+        <ul class="space-y-4 text-slate-400 text-sm">
+          <li class="flex items-start gap-2.5">
+            <i class="fa-solid fa-location-dot text-sky-DEFAULT mt-0.5 flex-shrink-0"></i>
+            <span>Nakonde Town, Off Great North Road, Opposite Ikumbi Complex, Room 5 Ntindi Village</span>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <i class="fa-solid fa-phone text-sky-DEFAULT flex-shrink-0"></i>
+            <a href="tel:+260977504807" class="hover:text-white transition">+260 977 504 807</a>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <i class="fa-solid fa-phone text-sky-DEFAULT flex-shrink-0"></i>
+            <a href="tel:+260965528058" class="hover:text-white transition">+260 965 528 058</a>
+          </li>
+          <li class="flex items-start gap-2.5">
+            <i class="fa-solid fa-envelope text-sky-DEFAULT mt-0.5 flex-shrink-0"></i>
+            <a href="mailto:SISIMAGROUP.ZAMBIALTD@GMAIL.COM" class="hover:text-white transition text-xs break-all">SISIMAGROUP.ZAMBIALTD@GMAIL.COM</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Partners Strip -->
+    <div class="flex flex-wrap items-center justify-center gap-6 mb-10 opacity-50">
+      <span class="text-slate-400 text-xs font-semibold tracking-widest uppercase">Partners:</span>
+      <span class="text-slate-300 text-sm font-bold">BeForward Japan</span>
+      <span class="text-slate-600">·</span>
+      <span class="text-slate-300 text-sm font-bold">SBT Japan</span>
+      <span class="text-slate-600">·</span>
+      <span class="text-slate-300 text-sm font-bold">MJS &amp; IRE Freight</span>
+      <span class="text-slate-600">·</span>
+      <span class="text-slate-300 text-sm font-bold">Trust Co., Ltd. Japan</span>
+      <span class="text-slate-600">·</span>
+      <span class="text-slate-300 text-sm font-bold">QP Groups Zambia</span>
+      <span class="text-slate-600">·</span>
+      <span class="text-slate-300 text-sm font-bold">ZRA Licensed</span>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-xs">
+      <p class="text-center sm:text-left">
+        &copy; 2025 SISIMA GROUP ZAMBIA LIMITED &amp; MJS &amp; IRE Freight Limited. All rights reserved.
+      </p>
+      <p class="text-center">
+        Designed with <i class="fa-solid fa-heart text-red-400 mx-1"></i> for excellence in Zambia
+      </p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--           FLOATING WHATSAPP BUTTON              -->
+<!-- ═══════════════════════════════════════════════ -->
+<a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I found your website and would like to inquire."
+   target="_blank" class="wa-float" title="Chat with us on WhatsApp">
+  <span class="wa-float-ping"></span>
+  <i class="fa-brands fa-whatsapp text-white text-3xl relative z-10"></i>
+</a>
+
+<!-- Scroll to Top -->
+<button id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">
+  <i class="fa-solid fa-chevron-up text-sm"></i>
+</button>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--                  SCRIPTS                        -->
+<!-- ═══════════════════════════════════════════════ -->
+<script>
+  // ── AOS ──
+  AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic', offset: 50 });
+
+  // ── Hero Swiper ──
+  new Swiper('.hero-swiper', {
+    loop: true,
+    autoplay: { delay: 5500, disableOnInteraction: false, pauseOnMouseEnter: true },
+    speed: 1100,
+    effect: 'fade',
+    fadeEffect: { crossFade: true },
+    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+    pagination: { el: '.swiper-pagination', clickable: true },
+  });
+
+  // ── Stock Swiper ──
+  new Swiper('.stock-swiper', {
+    loop: true,
+    autoplay: { delay: 4000, disableOnInteraction: false },
+    speed: 700,
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+      640:  { slidesPerView: 2, spaceBetween: 20 },
+      1024: { slidesPerView: 3, spaceBetween: 24 },
+    },
+    pagination: { el: '.stock-swiper .swiper-pagination', clickable: true },
+  });
+
+  // ── Navbar Scroll ──
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    const st = document.getElementById('scroll-top');
+    if (window.scrollY > 400) st.classList.add('visible');
+    else st.classList.remove('visible');
+
+    // Page progress bar
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    const pct  = docH > 0 ? (window.scrollY / docH * 100) : 0;
+    document.getElementById('page-progress').style.width = pct + '%';
+  });
+
+  // ── Mobile Menu ──
+  let menuOpen = false;
+  document.getElementById('menu-btn').addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    const m = document.getElementById('mobile-menu');
+    const ic = document.getElementById('menu-icon');
+    if (menuOpen) {
+      m.style.display = 'flex';
+      requestAnimationFrame(() => m.classList.add('open'));
+      ic.className = 'fa-solid fa-xmark text-lg';
+      document.body.style.overflow = 'hidden';
+    } else {
+      closeMobileMenu();
+    }
+  });
+
+  function closeMobileMenu() {
+    menuOpen = false;
+    const m = document.getElementById('mobile-menu');
+    const ic = document.getElementById('menu-icon');
+    m.classList.remove('open');
+    setTimeout(() => { m.style.display = 'none'; }, 400);
+    ic.className = 'fa-solid fa-bars text-lg';
+    document.body.style.overflow = '';
+  }
+
+  // Close mobile menu on ESC
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMobileMenu(); });
+
+  // ── BeForward WhatsApp ──
+  function sendToWhatsApp() {
+    const input = document.getElementById('beforward-input');
+    const ref = input.value.trim();
+    if (!ref) {
+      input.classList.add('border-red-500', 'ring-red-500/25', 'ring-2');
+      input.focus();
+      input.placeholder = 'Please enter a reference number first!';
+      setTimeout(() => {
+        input.classList.remove('border-red-500', 'ring-red-500/25', 'ring-2');
+        input.placeholder = 'e.g. SIE-123456 or SBT-789012';
+      }, 3000);
+      return;
+    }
+    const msg = encodeURIComponent(`Hello SISIMA GROUP, my Be Forward / SBT Reference Number is: ${ref}`);
+    window.open(`https://wa.me/260977504807?text=${msg}`, '_blank');
+  }
+
+  function clearInput() {
+    document.getElementById('beforward-input').value = '';
+    document.getElementById('beforward-input').focus();
+  }
+
+  document.getElementById('beforward-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendToWhatsApp();
+  });
+
+  // ── Stat Counter Animation ──
+  function animateCounters() {
+    document.querySelectorAll('.stat-number').forEach(el => {
+      const target = parseInt(el.getAttribute('data-target'));
+      const duration = 1800;
+      const step = target / (duration / 16);
+      let current = 0;
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        el.textContent = Math.floor(current);
+        if (current >= target) clearInterval(timer);
+      }, 16);
+    });
+  }
+
+  // Use IntersectionObserver for stats
+  const statsSection = document.querySelector('.stat-number');
+  if (statsSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          animateCounters();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(statsSection.closest('section') || statsSection);
+  }
+
+  // ── FAQ Accordion ──
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const answer = item.querySelector('.faq-answer');
+    const isOpen = item.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.faq-item.open').forEach(el => {
+      el.classList.remove('open');
+      el.querySelector('.faq-answer').classList.remove('open');
+    });
+
+    // Open clicked if was closed
+    if (!isOpen) {
+      item.classList.add('open');
+      answer.classList.add('open');
+    }
+  }
+
+  // ── Vehicle Filter ──
+  function filterVehicles(category) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`[data-filter="${category}"]`).classList.add('active');
+    // Note: with Swiper, filtering is visual only on desktop; on mobile all slides still show
+    document.querySelectorAll('.stock-swiper .swiper-slide').forEach(slide => {
+      if (category === 'all' || slide.getAttribute('data-category') === category) {
+        slide.style.display = '';
+        slide.style.opacity = '1';
+      } else {
+        slide.style.opacity = '0.25';
+        slide.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          if (slide.style.opacity === '0.25') slide.style.display = '';
+        }, 300);
+      }
+    });
+  }
+
+  // ── Smooth Active Nav on Scroll ──
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--sky)' : '';
+    });
+  }, { passive: true });
+</script>
+
+</body>
+</html>
