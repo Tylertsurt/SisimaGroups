@@ -1,0 +1,358 @@
+/* ═══════════════════════════════════════════════
+   SISIMA GROUP — Mobile Overrides
+   Loaded after styles.css. Fixes all mobile
+   alignment and overflow issues.
+═══════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────
+   1. GLOBAL: prevent horizontal overflow
+────────────────────────────────────────────── */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+@media (max-width: 640px) {
+  section, footer { overflow-x: hidden; }
+}
+
+
+/* ─────────────────────────────────────────────
+   2. HERO SLIDER
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Full height on mobile */
+  .hero-swiper { height: 100svh; min-height: 500px; }
+
+  /* Hide nav arrows on mobile */
+  .swiper-button-next,
+  .swiper-button-prev { display: none !important; }
+
+  /* Anchor content to bottom-center, away from the notch/pagination */
+  .slide-overlay {
+    justify-content: flex-end !important;
+    align-items: center !important;
+    padding: 1rem 1.25rem 5.5rem !important;
+    text-align: center !important;
+  }
+
+  /* Badge */
+  .hero-badge {
+    font-size: 0.62rem !important;
+    padding: 5px 10px !important;
+    letter-spacing: 0.04em !important;
+    white-space: normal;
+    max-width: 88vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.75rem !important;
+    display: inline-block;
+  }
+
+  /* Headline — clamp so it never overflows */
+  .slide-overlay h1 {
+    font-size: clamp(1.55rem, 7.5vw, 2.4rem) !important;
+    line-height: 1.08 !important;
+    word-break: break-word;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Subtitle */
+  .slide-overlay .hero-sub {
+    font-size: 0.82rem !important;
+    margin-top: 0.5rem !important;
+    max-width: 90vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Tagline */
+  .slide-overlay .hero-tagline {
+    font-size: 0.68rem !important;
+    letter-spacing: 0.1em !important;
+    margin-top: 0.35rem !important;
+  }
+
+  /* Buttons — stack full-width */
+  .hero-btns {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.55rem !important;
+    margin-top: 0.9rem !important;
+  }
+  .hero-btns a {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0.8rem 1rem !important;
+    font-size: 0.8rem !important;
+    border-radius: 999px !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   3. NAVBAR
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* Tighten navbar horizontal padding */
+  #navbar {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   4. STATS STRIP
+────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .stat-number { font-size: 2.5rem !important; }
+}
+@media (max-width: 360px) {
+  .stat-number { font-size: 2rem !important; }
+}
+
+
+/* ─────────────────────────────────────────────
+   5. ABOUT SECTION
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  /* The image collage container — prevent negative-offset badges overflowing */
+  #about .relative.\\[data-aos\\] > div,
+  #about [data-aos] > .relative {
+    overflow: visible;
+  }
+
+  /* The "100% Satisfaction" badge that uses -bottom-4 -left: pull it in */
+  #about .absolute.-bottom-4 {
+    bottom: 0.5rem !important;
+    left: 0.75rem !important;
+    right: auto;
+    font-size: 0.8rem;
+  }
+  #about .absolute.-bottom-4 .text-lg {
+    font-size: 1rem !important;
+  }
+
+  /* The corner logo badge — hide on mobile to avoid overlap */
+  #about .absolute.-bottom-6.-right-6 {
+    display: none !important;
+  }
+
+  /* Section horizontal padding */
+  #about .max-w-6xl { padding-left: 1rem; padding-right: 1rem; }
+}
+
+
+/* ─────────────────────────────────────────────
+   6. SERVICES SECTION
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  #services .max-w-6xl { padding-left: 1rem; padding-right: 1rem; }
+  /* 2-col grid on small phones */
+  #services .grid { grid-template-columns: 1fr !important; }
+}
+@media (min-width: 480px) and (max-width: 640px) {
+  #services .grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+
+/* ─────────────────────────────────────────────
+   7. PROCESS / HOW IT WORKS
+────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  /* Hide step connector lines */
+  .step-line { display: none !important; }
+
+  #process .max-w-5xl { padding-left: 1rem; padding-right: 1rem; }
+
+  /* 2×2 grid for the 4 steps */
+  #process > div > div:nth-child(2) {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.5rem 1rem !important;
+    align-items: start !important;
+    margin-bottom: 2rem !important;
+  }
+}
+@media (max-width: 380px) {
+  /* Single column on very small phones */
+  #process > div > div:nth-child(2) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   8. BEFORWARD WIDGET
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  #beforward { padding-left: 0 !important; padding-right: 0 !important; }
+
+  /* Inner card */
+  #beforward > div > div {
+    padding: 1.1rem !important;
+    border-radius: 16px !important;
+  }
+
+  /* Header row — stack icon + text on tiny screens */
+  #beforward > div > div > div:first-child {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  /* Title text */
+  #beforward p[style*="1.1rem"] {
+    font-size: 0.85rem !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Input */
+  #beforward-input {
+    font-size: 0.85rem !important;
+    padding: 12px 40px 12px 38px !important;
+  }
+
+  /* Send button */
+  #beforward button[onclick="sendToWhatsApp()"] {
+    font-size: 0.85rem !important;
+    padding: 13px !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   9. VEHICLE STOCK SECTION
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  #stock .max-w-6xl { padding-left: 1rem; padding-right: 1rem; }
+
+  /* Filter buttons — smaller, wrap gracefully */
+  .filter-btn {
+    font-size: 0.72rem !important;
+    padding: 0.4rem 0.8rem !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   10. WHY CHOOSE US BANNER
+────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  /* 4 cards stay 2×2 — just tighten padding */
+  .grid.grid-cols-2.md\:grid-cols-4 > div {
+    padding: 0.9rem 0.65rem !important;
+  }
+  .grid.grid-cols-2.md\:grid-cols-4 i {
+    font-size: 1.5rem !important;
+    margin-bottom: 0.4rem !important;
+  }
+  .grid.grid-cols-2.md\:grid-cols-4 p:first-of-type {
+    font-size: 0.72rem !important;
+  }
+  .grid.grid-cols-2.md\:grid-cols-4 p:last-of-type {
+    font-size: 0.62rem !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   11. PARTNERS SECTION
+────────────────────────────────────────────── */
+@media (max-width: 479px) {
+  .partners-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+@media (max-width: 640px) {
+  #partners .max-w-6xl { padding-left: 1rem; padding-right: 1rem; }
+}
+
+
+/* ─────────────────────────────────────────────
+   12. TESTIMONIALS
+────────────────────────────────────────────── */
+@media (max-width: 500px) {
+  /* Single column below 500px */
+  #testimonials-grid,
+  .testimonial-grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* Target by structure since section has no id */
+  section .grid.sm\:grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   13. FAQ SECTION
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .faq-item button { padding: 1rem !important; font-size: 0.85rem; }
+  .faq-answer { font-size: 0.82rem; }
+}
+
+
+/* ─────────────────────────────────────────────
+   14. CONTACT SECTION
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  #contact .max-w-6xl { padding-left: 1rem; padding-right: 1rem; }
+
+  /* Contact info card */
+  #contact .rounded-3xl { padding: 1.1rem !important; }
+  #contact .contact-item { padding: 0.65rem 0.4rem !important; }
+  /* Shrink icon rings */
+  #contact .w-12.h-12 { width: 2.4rem !important; height: 2.4rem !important; flex-shrink: 0; }
+
+  /* Map height */
+  #contact .rounded-2xl.overflow-hidden.shadow-sm.border.h-56 { height: 10rem !important; }
+
+  /* WhatsApp CTA card padding */
+  #contact .bg-gradient-to-br { padding: 1.25rem !important; }
+
+  /* Office hours card */
+  #contact .rounded-2xl.border.bg-white.p-6 { padding: 1.1rem !important; }
+
+  /* Long email addresses — break properly */
+  #contact a[href^="mailto"] {
+    word-break: break-all;
+    font-size: 0.72rem !important;
+  }
+}
+
+
+/* ─────────────────────────────────────────────
+   15. FOOTER
+────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  footer > div > .grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+  }
+}
+@media (max-width: 480px) {
+  footer > div > .grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* Partners strip text */
+  footer .flex.flex-wrap { gap: 0.4rem !important; font-size: 0.68rem !important; }
+
+  /* Bottom bar */
+  footer .flex.flex-col { text-align: center !important; }
+
+  footer { padding-left: 1rem; padding-right: 1rem; }
+}
+
+
+/* ─────────────────────────────────────────────
+   16. FLOATING BUTTONS — avoid overlap on small screens
+────────────────────────────────────────────── */
+@media (max-width: 400px) {
+  .wa-float { bottom: 1rem !important; right: 1rem !important; width: 52px !important; height: 52px !important; }
+  #scroll-top { bottom: 4.5rem !important; right: 1rem !important; }
+}

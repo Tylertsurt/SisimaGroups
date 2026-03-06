@@ -18,9 +18,9 @@
             gold:  { DEFAULT: '#F59E0B', light: '#FDE68A' },
           },
           fontFamily: {
-            sans: ['DM Sans', 'system-ui', 'sans-serif'],
+            sans:    ['DM Sans', 'system-ui', 'sans-serif'],
             display: ['Barlow Condensed', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            mono:    ['JetBrains Mono', 'monospace'],
           },
         }
       }
@@ -41,272 +41,10 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 
-  <style>
-    :root {
-      --sky: #0EA5E9;
-      --sky-dark: #0284C7;
-      --navy: #0F172A;
-      --navy-mid: #1E293B;
-      --gold: #F59E0B;
-      --gold-light: #FDE68A;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; color: #0F172A; background: #fff; overflow-x: hidden; }
-
-    /* ── NOISE TEXTURE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: -1;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
-      pointer-events: none;
-    }
-
-    /* ── NAVBAR ── */
-    #navbar { transition: background 0.4s, box-shadow 0.4s, padding 0.3s; }
-    #navbar.scrolled {
-      background: rgba(15,23,42,0.97) !important;
-      box-shadow: 0 4px 32px rgba(0,0,0,.5);
-      padding-top: 0.5rem !important;
-      padding-bottom: 0.5rem !important;
-    }
-    .nav-link {
-      position: relative;
-      color: rgba(255,255,255,0.85);
-      transition: color 0.2s;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute; bottom: -4px; left: 0; right: 0;
-      height: 2px; background: var(--sky);
-      transform: scaleX(0); transform-origin: left;
-      transition: transform 0.25s ease;
-    }
-    .nav-link:hover { color: #fff; }
-    .nav-link:hover::after { transform: scaleX(1); }
-
-    /* ── MOBILE MENU ── */
-    #mobile-menu {
-      transform: translateY(-100%);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s;
-      opacity: 0;
-    }
-    #mobile-menu.open {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    /* ── HERO SWIPER ── */
-    .hero-swiper { width: 100%; height: 100vh; min-height: 580px; }
-    .hero-swiper .swiper-slide { position: relative; overflow: hidden; }
-    .hero-swiper .swiper-slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); transition: transform 7s ease; }
-    .hero-swiper .swiper-slide-active img { transform: scale(1); }
-    .slide-overlay {
-      position: absolute; inset: 0;
-      background: linear-gradient(160deg, rgba(15,23,42,.88) 0%, rgba(14,165,233,.18) 60%, rgba(15,23,42,.5) 100%);
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      text-align: center; padding: 1.5rem;
-    }
-    .hero-badge {
-      background: rgba(14,165,233,.15);
-      border: 1px solid rgba(14,165,233,.4);
-      backdrop-filter: blur(8px);
-    }
-    .swiper-button-next, .swiper-button-prev {
-      color: #fff !important;
-      background: rgba(14,165,233,.3);
-      border-radius: 50%;
-      width: 48px !important; height: 48px !important;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255,255,255,.15);
-      transition: background 0.2s;
-    }
-    .swiper-button-next:hover, .swiper-button-prev:hover { background: rgba(14,165,233,.55); }
-    .swiper-button-next::after, .swiper-button-prev::after { font-size: 0.9rem !important; font-weight: 900; }
-    .swiper-pagination-bullet { background: #fff !important; opacity: .5; width: 8px; height: 8px; }
-    .swiper-pagination-bullet-active { opacity: 1 !important; background: #0EA5E9 !important; width: 24px; border-radius: 4px; }
-
-    /* ── GRADIENT TEXT ── */
-    .grad-text { background: linear-gradient(90deg, #0EA5E9, #38BDF8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .grad-text-gold { background: linear-gradient(90deg, #F59E0B, #FDE68A); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-
-    /* ── SECTION TITLE PILL ── */
-    .section-pill {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(14,165,233,0.08);
-      border: 1px solid rgba(14,165,233,0.2);
-      color: var(--sky); font-size: 0.72rem;
-      font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 999px;
-    }
-
-    /* ── SERVICE CARDS ── */
-    .service-card {
-      position: relative; overflow: hidden;
-      transition: transform .35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow .35s;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(14,165,233,0.05) 0%, transparent 60%);
-      opacity: 0; transition: opacity 0.3s;
-    }
-    .service-card:hover { transform: translateY(-10px); box-shadow: 0 24px 60px rgba(14,165,233,.16); }
-    .service-card:hover::before { opacity: 1; }
-    .service-icon-ring { background: linear-gradient(135deg, #0EA5E9, #0284C7); }
-
-    /* ── STATS COUNTER ── */
-    .stat-number { font-feature-settings: 'tnum'; }
-
-    /* ── STEP CONNECTOR ── */
-    .step-line {
-      flex: 1; height: 1px;
-      background: linear-gradient(90deg, rgba(14,165,233,.6), rgba(14,165,233,.2));
-      margin: 0 0.75rem; position: relative;
-    }
-    .step-line::after {
-      content: '';
-      position: absolute; right: 0; top: 50%;
-      transform: translateY(-50%);
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--sky);
-    }
-
-    /* ── VEHICLE CARDS ── */
-    .vehicle-card {
-      display: flex; flex-direction: column; height: 100%;
-      transition: transform .3s cubic-bezier(0.34,1.56,0.64,1), box-shadow .3s;
-    }
-    .vehicle-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(14,165,233,.16); }
-    .card-body { flex: 1; display: flex; flex-direction: column; }
-    .card-specs { margin-top: auto; padding-top: 0.5rem; }
-    .stock-swiper { padding-bottom: 2.5rem !important; }
-    .stock-swiper .swiper-slide { height: auto !important; display: flex; align-items: stretch; }
-    .stock-swiper .swiper-pagination-bullet { background: #0EA5E9 !important; }
-
-    /* ── PARTNERS SECTION ── */
-    .partner-logo-wrap {
-      background: #fff;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      padding: 16px 18px;
-      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
-      text-align: center;
-      height: 100%;
-      transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
-    }
-    .partner-logo-wrap:hover {
-      box-shadow: 0 8px 30px rgba(14,165,233,.12);
-      border-color: rgba(14,165,233,.3);
-      transform: translateY(-4px);
-    }
-    .partner-logo-img-box {
-      width: 100%; height: 60px;
-      display: flex; align-items: center; justify-content: center;
-      background: #f8fafc; border: 1px solid #e8edf2;
-      border-radius: 10px; overflow: hidden;
-      padding: 8px 12px;
-      flex-shrink: 0; margin-bottom: 10px;
-    }
-    .partner-logo-img-box img {
-      max-height: 40px; max-width: 130px;
-      width: auto; height: auto; object-fit: contain;
-    }
-
-    /* ── CONTACT ── */
-    .contact-item { transition: background .25s, transform .2s; border-radius: 12px; }
-    .contact-item:hover { background: rgba(14,165,233,.06); transform: translateX(4px); }
-
-    /* ── WHATSAPP FLOAT ── */
-    .wa-float {
-      position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 9999;
-      width: 60px; height: 60px; border-radius: 50%;
-      background: linear-gradient(135deg, #25D366, #128C7E);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 8px 28px rgba(37,211,102,.55);
-      transition: transform .25s, box-shadow .25s;
-    }
-    .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 36px rgba(37,211,102,.7); }
-    .wa-float-ping {
-      position: absolute;
-      width: 100%; height: 100%; border-radius: 50%;
-      background: rgba(37,211,102,.4);
-      animation: ping 2s cubic-bezier(0,0,.2,1) infinite;
-    }
-    @keyframes ping { 75%,100%{ transform:scale(1.6); opacity:0; } }
-
-    /* ── SCROLL TO TOP ── */
-    #scroll-top {
-      position: fixed; bottom: 5.5rem; right: 1.75rem; z-index: 9998;
-      width: 44px; height: 44px; border-radius: 50%;
-      background: rgba(15,23,42,.7); backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,.15);
-      display: flex; align-items: center; justify-content: center;
-      color: #fff; cursor: pointer;
-      opacity: 0; transform: translateY(12px);
-      transition: opacity 0.3s, transform 0.3s, background 0.2s;
-    }
-    #scroll-top.visible { opacity: 1; transform: translateY(0); }
-    #scroll-top:hover { background: var(--sky); }
-
-    /* ── BUTTONS ── */
-    .btn-primary {
-      background: linear-gradient(135deg, #0EA5E9, #0284C7);
-      transition: filter .25s, transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 20px rgba(14,165,233,.4);
-    }
-    .btn-primary:hover { filter: brightness(1.1); transform: scale(1.03); box-shadow: 0 6px 28px rgba(14,165,233,.55); }
-    .btn-gold { background: linear-gradient(135deg, #F59E0B, #D97706); transition: filter .25s, transform .2s; }
-    .btn-gold:hover { filter: brightness(1.1); transform: scale(1.03); }
-    .btn-outline {
-      border: 2px solid rgba(255,255,255,.75);
-      transition: background .25s, color .25s, border-color .25s;
-    }
-    .btn-outline:hover { background: rgba(255,255,255,1); color: #0F172A; border-color: #fff; }
-    .wa-send-btn { background: linear-gradient(135deg, #25D366, #128C7E); transition: filter .25s, transform .2s; }
-    .wa-send-btn:hover { filter: brightness(1.08); transform: scale(1.02); }
-
-    /* ── TESTIMONIAL ── */
-    .testimonial-card { transition: transform .3s, box-shadow .3s; }
-    .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
-
-    /* ── FAQ ACCORDION ── */
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
-    .faq-answer.open { max-height: 400px; }
-    .faq-chevron { transition: transform 0.3s; }
-    .faq-item.open .faq-chevron { transform: rotate(180deg); }
-
-    /* ── TICKER STRIP ── */
-    .ticker-track {
-      display: flex; width: max-content;
-      animation: ticker 28s linear infinite;
-    }
-    .ticker-track:hover { animation-play-state: paused; }
-    @keyframes ticker { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
-
-    /* ── MOBILE RESPONSIVE TWEAKS ── */
-    @media (max-width: 640px) {
-      .hero-swiper { height: 100svh; }
-      .step-line { display: none; }
-      .swiper-button-next, .swiper-button-prev { display: none !important; }
-    }
-
-    /* ── PROGRESS BAR ── */
-    #page-progress {
-      position: fixed; top: 0; left: 0; z-index: 9999;
-      height: 3px; width: 0%;
-      background: linear-gradient(90deg, #0EA5E9, #F59E0B);
-      transition: width 0.1s linear;
-    }
-
-    /* ── WAVE DIVIDER ── */
-    .wave-divider svg { display: block; }
-
-    /* ── HOVER LIFT ── */
-    .hover-lift { transition: transform 0.25s cubic-bezier(.34,1.56,.64,1); }
-    .hover-lift:hover { transform: translateY(-4px); }
-  </style>
+  <!-- ★ PROJECT STYLESHEET ★ -->
+  <link rel="stylesheet" href="styles.css"/>
+  <!-- Mobile overrides -->
+  <link rel="stylesheet" href="mobile.css"/>
 </head>
 <body class="bg-white text-navy">
 
@@ -340,7 +78,7 @@
     <li><a href="#partners" class="nav-link font-semibold">Partners</a></li>
     <li><a href="#contact"  class="nav-link font-semibold">Contact</a></li>
     <li>
-      <a href="https://wa.me/260977504807" target="_blank"
+      <a href="https://wa.me/260965528058" target="_blank"
          class="btn-gold px-5 py-2.5 rounded-full text-white text-sm font-bold shadow-lg flex items-center gap-2">
         <i class="fa-brands fa-whatsapp text-base"></i> WhatsApp Us
       </a>
@@ -373,7 +111,7 @@
     <a href="#contact"  onclick="closeMobileMenu()" class="hover:text-sky-light transition flex items-center gap-2"><i class="fa-solid fa-phone text-sky-DEFAULT text-base"></i> Contact</a>
   </nav>
 
-  <a href="https://wa.me/260977504807" target="_blank" onclick="closeMobileMenu()"
+  <a href="https://wa.me/260965528058" target="_blank" onclick="closeMobileMenu()"
      class="wa-send-btn mt-4 px-8 py-3.5 rounded-full text-white font-bold text-lg flex items-center gap-2 shadow-xl">
     <i class="fa-brands fa-whatsapp text-2xl"></i> WhatsApp Us
   </a>
@@ -391,23 +129,24 @@
   <div class="swiper hero-swiper">
     <div class="swiper-wrapper">
 
-      <div class="swiper-slide">
-        <img src="images/img1.jpeg" alt="Slide 1" loading="eager"/>
+      <!-- SLIDE 1 -->
+      <div class="swiper-slide" data-kb="1">
+        <img src="images/img1.png" alt="Slide 1" loading="eager"/>
         <div class="slide-overlay">
-          <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block" data-aos="fade-down">
+          <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block">
             🇿🇲 Zambia's Trusted Vehicle Importer
           </span>
-          <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl" data-aos="fade-up" data-aos-delay="100">
+          <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl">
             CHANGE THE WAY<br/>
             <span class="grad-text">YOU IMPORT A CAR!</span>
           </h1>
-          <p class="text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light" data-aos="fade-up" data-aos-delay="200">
+          <p class="hero-sub text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
             Let <strong class="text-white font-bold">SISIMA</strong> Handle The Rest.
           </p>
-          <p class="text-sky-light text-sm md:text-base mt-2 tracking-widest font-semibold" data-aos="fade-up" data-aos-delay="250">
+          <p class="hero-tagline text-sky-light text-sm md:text-base mt-2 tracking-widest font-semibold">
             Easy &nbsp;·&nbsp; Safe &nbsp;·&nbsp; Reliable
           </p>
-          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mt-8" data-aos="fade-up" data-aos-delay="320">
+          <div class="hero-btns flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
             <a href="#process" class="btn-primary px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base">
               <i class="fa-solid fa-comments mr-2"></i> Get a Quote
             </a>
@@ -418,8 +157,9 @@
         </div>
       </div>
 
-      <div class="swiper-slide">
-        <img src="images/img2.jpeg" alt="Slide 2"/>
+      <!-- SLIDE 2 -->
+      <div class="swiper-slide" data-kb="2">
+        <img src="images/img2.png" alt="Slide 2"/>
         <div class="slide-overlay">
           <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block">
             🚗 Direct Imports from Japan
@@ -427,10 +167,13 @@
           <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl">
             YOUR DREAM CAR,<br/><span class="grad-text-gold">DELIVERED TO YOUR DOOR.</span>
           </h1>
-          <p class="text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
+          <p class="hero-sub text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
             From Nakonde border post to your doorstep — handled every step of the way.
           </p>
-          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
+          <p class="hero-tagline text-amber-300 text-sm md:text-base mt-2 tracking-widest font-semibold">
+            Japan &nbsp;·&nbsp; Zambia &nbsp;·&nbsp; Doorstep
+          </p>
+          <div class="hero-btns flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
             <a href="#stock" class="btn-gold px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base shadow-xl">
               <i class="fa-solid fa-car mr-2"></i> View Vehicles
             </a>
@@ -441,8 +184,9 @@
         </div>
       </div>
 
-      <div class="swiper-slide">
-        <img src="images/img3.jpeg" alt="Slide 3"/>
+      <!-- SLIDE 3 -->
+      <div class="swiper-slide" data-kb="3">
+        <img src="images/img3.png" alt="Slide 3"/>
         <div class="slide-overlay">
           <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block">
             🌍 Regional Logistics Leader
@@ -450,10 +194,13 @@
           <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl">
             OFFICES AT EVERY<br/><span class="grad-text">ZAMBIAN BORDER.</span>
           </h1>
-          <p class="text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
+          <p class="hero-sub text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
             Customs clearing, RIT, international delivery &amp; full freight logistics across Southern Africa.
           </p>
-          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
+          <p class="hero-tagline text-sky-light text-sm md:text-base mt-2 tracking-widest font-semibold">
+            Nakonde &nbsp;·&nbsp; Chirundu &nbsp;·&nbsp; Kazungula &nbsp;·&nbsp; All Borders
+          </p>
+          <div class="hero-btns flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
             <a href="#services" class="btn-primary px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base">
               <i class="fa-solid fa-briefcase mr-2"></i> Our Services
             </a>
@@ -464,8 +211,9 @@
         </div>
       </div>
 
-      <div class="swiper-slide">
-        <img src="images/img4.jpeg" alt="Slide 4"/>
+      <!-- SLIDE 4 -->
+      <div class="swiper-slide" data-kb="4">
+        <img src="images/img4.webp" alt="Slide 4"/>
         <div class="slide-overlay">
           <span class="hero-badge text-sky-light text-xs sm:text-sm px-4 py-1.5 rounded-full font-semibold tracking-widest uppercase mb-6 inline-block">
             🤝 Partnership Based on Trust
@@ -473,11 +221,14 @@
           <h1 class="font-display font-black text-white text-4xl sm:text-5xl md:text-7xl xl:text-8xl leading-none max-w-5xl">
             TRANSPARENT.<br/><span class="grad-text-gold">HASSLE-FREE. TRUSTED.</span>
           </h1>
-          <p class="text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
+          <p class="hero-sub text-white/75 mt-5 text-base md:text-xl max-w-2xl font-light">
             Structured, well-coordinated processes that put your peace of mind first.
           </p>
-          <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
-            <a href="https://wa.me/260977504807" target="_blank"
+          <p class="hero-tagline text-amber-300 text-sm md:text-base mt-2 tracking-widest font-semibold">
+            Transparent &nbsp;·&nbsp; Reliable &nbsp;·&nbsp; Professional
+          </p>
+          <div class="hero-btns flex flex-wrap gap-3 sm:gap-4 justify-center mt-8">
+            <a href="https://wa.me/260965528058" target="_blank"
                class="btn-gold px-6 sm:px-8 py-3.5 rounded-full text-white font-bold text-sm sm:text-base shadow-xl">
               <i class="fa-brands fa-whatsapp mr-2"></i> Chat on WhatsApp
             </a>
@@ -488,7 +239,7 @@
         </div>
       </div>
 
-    </div>
+    </div><!-- /.swiper-wrapper -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
@@ -530,7 +281,7 @@
 <!-- ═══════════════════════════════════════════════ -->
 <!--               STATS STRIP                       -->
 <!-- ═══════════════════════════════════════════════ -->
-<section class="bg-slate-50 py-12 px-4">
+<section class="py-12 px-4" style="background:#d0ecf9;">
   <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
     <div data-aos="fade-up" data-aos-delay="0" class="hover-lift">
       <p class="font-display font-black text-5xl grad-text stat-number" data-target="500">0</p>
@@ -559,7 +310,7 @@
 <!-- ═══════════════════════════════════════════════ -->
 <!--              ABOUT SECTION                      -->
 <!-- ═══════════════════════════════════════════════ -->
-<section id="about" class="py-20 px-4 bg-white">
+<section id="about" class="py-20 px-4" style="background:#e8f6fd;">
   <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
 
     <!-- Image Collage -->
@@ -569,11 +320,9 @@
       <div class="absolute -bottom-6 -right-6 w-36 h-36 rounded-2xl overflow-hidden shadow-xl border-4 border-white hidden sm:block">
         <img src="images/logo.jpeg" alt="Sisima Logo" class="w-full h-full object-cover"/>
       </div>
-      <!-- Floating trust badge -->
       <div class="absolute top-5 left-5 bg-white/95 backdrop-blur-sm text-navy text-xs font-bold px-4 py-2 rounded-full shadow-lg flex items-center gap-2 border border-sky-DEFAULT/20">
         <i class="fa-solid fa-shield-halved text-sky-DEFAULT"></i> Trusted Since Day One
       </div>
-      <!-- Experience badge -->
       <div class="absolute -bottom-4 left-8 sm:-left-8 bg-sky-DEFAULT text-white px-5 py-3 rounded-2xl shadow-xl flex items-center gap-3">
         <i class="fa-solid fa-award text-2xl text-gold-light"></i>
         <div>
@@ -629,7 +378,7 @@
 <!-- ═══════════════════════════════════════════════ -->
 <!--             SERVICES SECTION                    -->
 <!-- ═══════════════════════════════════════════════ -->
-<section id="services" class="py-20 px-4 bg-slate-50">
+<section id="services" class="py-20 px-4" style="background:#d0ecf9;">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14" data-aos="fade-up">
       <span class="section-pill"><i class="fa-solid fa-briefcase"></i> What We Offer</span>
@@ -643,7 +392,7 @@
 
     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
-      <div class="service-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="0">
+      <div class="service-card rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="0">
         <div class="service-icon-ring w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
           <i class="fa-solid fa-car text-white text-2xl"></i>
         </div>
@@ -658,7 +407,7 @@
         </div>
       </div>
 
-      <div class="service-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="100">
+      <div class="service-card rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="100">
         <div class="service-icon-ring w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
           <i class="fa-solid fa-truck-fast text-white text-2xl"></i>
         </div>
@@ -673,7 +422,7 @@
         </div>
       </div>
 
-      <div class="service-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="200">
+      <div class="service-card rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="200">
         <div class="service-icon-ring w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
           <i class="fa-solid fa-file-invoice-dollar text-white text-2xl"></i>
         </div>
@@ -688,7 +437,7 @@
         </div>
       </div>
 
-      <div class="service-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="300">
+      <div class="service-card rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="300">
         <div class="service-icon-ring w-14 h-14 rounded-2xl flex items-center justify-center mb-5 shadow-lg">
           <i class="fa-solid fa-globe text-white text-2xl"></i>
         </div>
@@ -773,31 +522,66 @@
     </div>
 
     <!-- WhatsApp Input Widget -->
-    <div id="beforward" class="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 backdrop-blur-sm max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-      <div class="flex items-center gap-3 mb-6">
-        <div class="w-12 h-12 rounded-2xl bg-green-500 flex items-center justify-center flex-shrink-0">
-          <i class="fa-brands fa-whatsapp text-white text-2xl"></i>
+    <div id="beforward" class="max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+      <div style="background:linear-gradient(135deg,#0c1a2e 0%,#0f2744 60%,#0c1f3a 100%); border:1.5px solid rgba(14,165,233,0.35); border-radius:24px; padding:2rem; box-shadow:0 24px 64px rgba(0,0,0,0.5), 0 0 0 1px rgba(14,165,233,0.08);">
+        <!-- Header -->
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px;">
+          <div style="width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 6px 20px rgba(37,211,102,0.4);">
+            <i class="fa-brands fa-whatsapp" style="color:#fff;font-size:1.5rem;"></i>
+          </div>
+          <div>
+            <p style="color:#fff;font-weight:800;font-size:1.1rem;margin:0;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em;">SUBMIT YOUR BEFORWARD REFERENCE</p>
+            <p style="color:#7dd3fc;font-size:0.75rem;margin:0;margin-top:2px;">We'll respond instantly on WhatsApp — usually within minutes</p>
+          </div>
         </div>
-        <div>
-          <p class="text-white font-bold text-lg">Submit Your BeForward Reference</p>
-          <p class="text-slate-400 text-xs">We'll respond instantly on WhatsApp</p>
+
+        <!-- Divider -->
+        <div style="height:1px;background:linear-gradient(90deg,rgba(14,165,233,0.4),rgba(14,165,233,0.05));margin-bottom:20px;"></div>
+
+        <!-- Label -->
+        <label style="display:flex;align-items:center;gap:6px;color:#bae6fd;font-size:0.8rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">
+          <i class="fa-solid fa-hashtag" style="color:#0EA5E9;font-size:0.7rem;"></i>
+          BeForward / SBT Reference Number
+        </label>
+
+        <!-- Input field -->
+        <div style="position:relative;margin-bottom:14px;">
+          <div style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#0EA5E9;font-size:0.9rem;pointer-events:none;">
+            <i class="fa-solid fa-car"></i>
+          </div>
+          <input id="beforward-input" type="text" placeholder="e.g. SIE-123456 or SBT-789012"
+            style="width:100%;background:#0a1628;border:1.5px solid rgba(14,165,233,0.4);color:#fff;border-radius:12px;padding:14px 44px 14px 42px;font-size:0.95rem;font-family:'DM Sans',sans-serif;font-weight:500;outline:none;transition:border-color 0.2s,box-shadow 0.2s;box-sizing:border-box;"
+            onfocus="this.style.borderColor='#0EA5E9';this.style.boxShadow='0 0 0 3px rgba(14,165,233,0.2)';"
+            onblur="this.style.borderColor='rgba(14,165,233,0.4)';this.style.boxShadow='none';"
+          />
+          <button onclick="clearInput()" title="Clear"
+            style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(14,165,233,0.15);border:none;color:#7dd3fc;width:28px;height:28px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;font-size:0.75rem;"
+            onmouseover="this.style.background='rgba(14,165,233,0.3)'" onmouseout="this.style.background='rgba(14,165,233,0.15)'">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
-      </div>
-      <label class="text-slate-300 text-sm font-semibold block mb-2">BeForward / SBT Reference Number</label>
-      <div class="relative mb-4">
-        <input id="beforward-input" type="text" placeholder="e.g. SIE-123456 or SBT-789012"
-               class="w-full bg-white/8 border border-white/20 text-white placeholder-slate-500 rounded-xl px-4 py-3.5 text-sm pr-12 focus:outline-none focus:border-sky-DEFAULT focus:ring-2 focus:ring-sky-DEFAULT/25 transition"/>
-        <button onclick="clearInput()" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition text-sm" title="Clear">
-          <i class="fa-solid fa-xmark"></i>
+
+        <!-- Tip text -->
+        <p style="color:#64748b;font-size:0.72rem;margin-bottom:16px;display:flex;align-items:center;gap:5px;">
+          <i class="fa-solid fa-circle-info" style="color:#0EA5E9;"></i>
+          Find the reference number on the vehicle listing page on BeForward.jp or SBTJapan.com
+        </p>
+
+        <!-- Send button -->
+        <button onclick="sendToWhatsApp()"
+          style="width:100%;padding:15px;border-radius:13px;background:linear-gradient(135deg,#25D366,#128C7E);border:none;color:#fff;font-weight:800;font-size:1rem;font-family:'Barlow Condensed',sans-serif;letter-spacing:0.05em;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 6px 24px rgba(37,211,102,0.4);transition:filter 0.2s,transform 0.15s;"
+          onmouseover="this.style.filter='brightness(1.1)';this.style.transform='scale(1.01)'"
+          onmouseout="this.style.filter='none';this.style.transform='scale(1)'">
+          <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i>
+          SEND REFERENCE ON WHATSAPP
         </button>
+
+        <!-- Footer note -->
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;">
+          <i class="fa-solid fa-lock" style="color:#334155;font-size:0.65rem;"></i>
+          <span style="color:#475569;font-size:0.7rem;">You'll be redirected to WhatsApp with your reference pre-filled. Safe &amp; secure.</span>
+        </div>
       </div>
-      <button onclick="sendToWhatsApp()"
-              class="wa-send-btn w-full py-4 rounded-xl text-white font-bold text-base flex items-center justify-center gap-2 shadow-xl transition">
-        <i class="fa-brands fa-whatsapp text-xl"></i> Send to WhatsApp
-      </button>
-      <p class="text-slate-500 text-xs text-center mt-3">
-        <i class="fa-solid fa-lock mr-1"></i> You'll be redirected to WhatsApp with your reference pre-filled.
-      </p>
     </div>
 
   </div>
@@ -805,171 +589,117 @@
 
 
 <!-- ═══════════════════════════════════════════════ -->
-<!--           VEHICLES IN STOCK                     -->
+<!--    OUR VEHICLES IN STOCK  (loaded from cars.json) -->
 <!-- ═══════════════════════════════════════════════ -->
-<section id="stock" class="py-20 px-4 bg-white">
+<section id="stock" class="py-20 px-4" style="background:#e8f6fd;">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12" data-aos="fade-up">
       <span class="section-pill"><i class="fa-solid fa-location-dot"></i> Available at Nakonde Border Post</span>
       <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4">
-        Vehicles <span class="grad-text">In Stock</span>
+        Our Cars <span class="grad-text">In Stock</span>
       </h2>
       <p class="text-slate-500 mt-3 max-w-xl mx-auto">
-        Freshly imported, cleared and ready for purchase. Contact us for pricing and full specifications.
+        Real cars, real photos. All vehicles are physically available and ready for purchase. WhatsApp us to inquire.
       </p>
     </div>
 
-    <!-- Filter Tabs -->
-    <div class="flex flex-wrap justify-center gap-2 mb-8" data-aos="fade-up">
-      <button onclick="filterVehicles('all')" class="filter-btn active px-5 py-2 rounded-full text-sm font-semibold transition-all" data-filter="all">All Vehicles</button>
-      <button onclick="filterVehicles('suv')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-filter="suv">SUVs</button>
-      <button onclick="filterVehicles('pickup')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-filter="pickup">Pickups</button>
-      <button onclick="filterVehicles('arriving')" class="filter-btn px-5 py-2 rounded-full text-sm font-semibold transition-all" data-filter="arriving">Arriving Soon</button>
+    <!-- Filter Tabs (rendered dynamically) -->
+    <div id="stock-filters" class="flex flex-wrap justify-center gap-2 mb-8" data-aos="fade-up"></div>
+
+    <!-- Dynamic car grid -->
+    <div id="our-cars-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-delay="100"></div>
+
+    <!-- Loading state -->
+    <div id="cars-loading" class="text-center py-12 text-slate-400">
+      <i class="fa-solid fa-spinner fa-spin text-3xl mb-3 text-sky-400"></i>
+      <p class="text-sm">Loading stock...</p>
     </div>
 
-    <style>
-      .filter-btn { background: #f1f5f9; color: #475569; border: 1px solid #e2e8f0; }
-      .filter-btn.active { background: var(--sky); color: #fff; border-color: var(--sky); box-shadow: 0 4px 16px rgba(14,165,233,.35); }
-      .filter-btn:hover:not(.active) { background: rgba(14,165,233,.08); border-color: rgba(14,165,233,.3); color: var(--sky); }
-    </style>
-
-    <div class="swiper stock-swiper" data-aos="fade-up" data-aos-delay="100">
-      <div class="swiper-wrapper pb-4">
-
-        <div class="swiper-slide" data-category="suv">
-          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
-            <div class="relative h-52 overflow-hidden bg-slate-100">
-              <img src="images/img6.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
-              <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">IN STOCK</span>
-              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
-            </div>
-            <div class="p-5">
-              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">SUV · Japan Import</p>
-              <h4 class="font-display font-bold text-xl text-navy">Toyota Land Cruiser Prado</h4>
-              <p class="text-slate-500 text-sm mt-1">Available at Nakonde — Low Mileage, Excellent Condition</p>
-              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Diesel</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Auto</span>
-              </div>
-              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I am interested in the Toyota Land Cruiser Prado in stock."
-                 target="_blank"
-                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
-                <i class="fa-solid fa-cart-shopping mr-1"></i> View Details / Buy Now
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide" data-category="suv">
-          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
-            <div class="relative h-52 overflow-hidden bg-slate-100">
-              <img src="images/img7.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
-              <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">IN STOCK</span>
-              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
-            </div>
-            <div class="p-5">
-              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">SUV · Japan Import</p>
-              <h4 class="font-display font-bold text-xl text-navy">Nissan X-Trail</h4>
-              <p class="text-slate-500 text-sm mt-1">Available at Nakonde — Well Maintained, Family Ready</p>
-              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Petrol</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Auto</span>
-              </div>
-              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I am interested in the Nissan X-Trail in stock."
-                 target="_blank"
-                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
-                <i class="fa-solid fa-cart-shopping mr-1"></i> View Details / Buy Now
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide" data-category="pickup">
-          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
-            <div class="relative h-52 overflow-hidden bg-slate-100">
-              <img src="images/img1.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
-              <span class="absolute top-3 left-3 bg-amber-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">AVAILABLE</span>
-              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
-            </div>
-            <div class="p-5">
-              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">Pickup · Japan Import</p>
-              <h4 class="font-display font-bold text-xl text-navy">Toyota Hilux Double Cab</h4>
-              <p class="text-slate-500 text-sm mt-1">Available at Nakonde — Heavy Duty, Road Ready</p>
-              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Diesel</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Manual</span>
-              </div>
-              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I am interested in the Toyota Hilux Double Cab in stock."
-                 target="_blank"
-                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
-                <i class="fa-solid fa-cart-shopping mr-1"></i> View Details / Buy Now
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide" data-category="suv">
-          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
-            <div class="relative h-52 overflow-hidden bg-slate-100">
-              <img src="images/img2.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
-              <span class="absolute top-3 left-3 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">IN STOCK</span>
-              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
-            </div>
-            <div class="p-5">
-              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">SUV · Japan Import</p>
-              <h4 class="font-display font-bold text-xl text-navy">Honda CRV</h4>
-              <p class="text-slate-500 text-sm mt-1">Available at Nakonde — Spacious, Fuel Efficient SUV</p>
-              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Petrol</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Auto</span>
-              </div>
-              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I am interested in the Honda CRV in stock."
-                 target="_blank"
-                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
-                <i class="fa-solid fa-cart-shopping mr-1"></i> View Details / Buy Now
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="swiper-slide" data-category="arriving">
-          <div class="vehicle-card bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-md">
-            <div class="relative h-52 overflow-hidden bg-slate-100">
-              <img src="images/img3.jpeg" alt="Vehicle" class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"/>
-              <span class="absolute top-3 left-3 bg-blue-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow">ARRIVING SOON</span>
-              <span class="absolute top-3 right-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">🇯🇵 Japan</span>
-            </div>
-            <div class="p-5">
-              <p class="text-xs text-sky-DEFAULT font-bold uppercase tracking-widest mb-1">SUV · Japan Import</p>
-              <h4 class="font-display font-bold text-xl text-navy">Mitsubishi Pajero</h4>
-              <p class="text-slate-500 text-sm mt-1">Arriving at Nakonde — Reserve Yours Today!</p>
-              <div class="flex items-center gap-3 mt-3 text-xs text-slate-400 flex-wrap">
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gauge-high text-sky-DEFAULT"></i> Low KM</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-gas-pump text-sky-DEFAULT"></i> Diesel</span>
-                <span class="flex items-center gap-1"><i class="fa-solid fa-sliders text-sky-DEFAULT"></i> Auto</span>
-              </div>
-              <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I want to reserve the Mitsubishi Pajero arriving soon."
-                 target="_blank"
-                 class="mt-4 block w-full text-center btn-gold py-3 rounded-xl text-white font-bold text-sm shadow-md">
-                <i class="fa-solid fa-clock mr-1"></i> Reserve Now
-              </a>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="swiper-pagination mt-4"></div>
+    <!-- No results -->
+    <div id="cars-empty" class="hidden text-center py-12 text-slate-400">
+      <i class="fa-solid fa-car-on text-4xl mb-3 opacity-30"></i>
+      <p class="font-semibold">No vehicles in this category right now.</p>
+      <p class="text-sm mt-1">Check back soon or WhatsApp us for the latest stock.</p>
     </div>
 
     <div class="text-center mt-10" data-aos="fade-up">
-      <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I would like to see all vehicles currently in stock."
+      <a href="https://wa.me/260965528058?text=Hello SISIMA GROUP, I would like to see all vehicles currently in stock."
          target="_blank"
          class="btn-gold inline-flex items-center gap-2 px-8 py-4 rounded-full text-white font-bold text-base shadow-xl">
-        <i class="fa-brands fa-whatsapp text-xl"></i> Ask For Full Stock List
+        <i class="fa-brands fa-whatsapp text-xl"></i> WhatsApp for Full Stock List
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════ -->
+<!--        BROWSE FROM OUR PARTNERS                   -->
+<!-- ═══════════════════════════════════════════════ -->
+<section id="browse-partners" class="py-20 px-4" style="background:#d0ecf9;">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12" data-aos="fade-up">
+      <span class="section-pill"><i class="fa-solid fa-magnifying-glass"></i> Browse More</span>
+      <h2 class="font-display font-black text-3xl sm:text-4xl md:text-5xl text-navy mt-4">
+        Find More Vehicles on <span class="grad-text">Our Partner Sites</span>
+      </h2>
+      <p class="text-slate-500 mt-3 max-w-2xl mx-auto">
+        Browse thousands of vehicles on BeForward, SBT Japan, and Trust Co. Find one you like? Copy the reference number and send it to us — we’ll handle everything else.
+      </p>
+    </div>
+
+    <!-- Partner link tiles — update hrefs when you have specific reference links -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10" data-aos="fade-up">
+
+      <!-- BeForward -->
+      <a href="https://www.beforward.jp" target="_blank" rel="noopener"
+         class="group flex items-center gap-4 bg-white border border-slate-200 hover:border-sky-400 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all">
+        <div class="w-14 h-14 rounded-xl flex-shrink-0 overflow-hidden border border-slate-100 flex items-center justify-center bg-white p-1">
+          <img src="images/bforward.png" alt="BeForward" class="w-full h-full object-contain"/>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-navy text-sm leading-tight">BE FORWARD Japan</p>
+          <p class="text-slate-400 text-xs mt-0.5">Japan's #1 Used Car Exporter</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square text-slate-300 group-hover:text-sky-500 transition flex-shrink-0"></i>
+      </a>
+
+      <!-- SBT Japan -->
+      <a href="https://www.sbtjapan.com" target="_blank" rel="noopener"
+         class="group flex items-center gap-4 bg-white border border-slate-200 hover:border-amber-400 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all">
+        <div class="w-14 h-14 rounded-xl flex-shrink-0 overflow-hidden border border-slate-100 flex items-center justify-center bg-white p-1">
+          <img src="images/sbt.png" alt="SBT Japan" class="w-full h-full object-contain"/>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-navy text-sm leading-tight">SBT Japan</p>
+          <p class="text-slate-400 text-xs mt-0.5">Global Exporter since 1993</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square text-slate-300 group-hover:text-amber-500 transition flex-shrink-0"></i>
+      </a>
+
+      <!-- Trust Co. -->
+      <a href="https://www.trust-ltd.co.jp/en/" target="_blank" rel="noopener"
+         class="group flex items-center gap-4 bg-white border border-slate-200 hover:border-indigo-400 rounded-2xl p-5 shadow-sm hover:shadow-md transition-all">
+        <div class="w-14 h-14 rounded-xl flex-shrink-0 overflow-hidden border border-slate-100 flex items-center justify-center bg-white p-1">
+          <img src="images/trustcompanies.png" alt="Trust Co." class="w-full h-full object-contain"/>
+        </div>
+        <div class="flex-1 min-w-0">
+          <p class="font-bold text-navy text-sm leading-tight">Trust Co., Ltd.</p>
+          <p class="text-slate-400 text-xs mt-0.5">Est. 1988 · 160+ Countries</p>
+        </div>
+        <i class="fa-solid fa-arrow-up-right-from-square text-slate-300 group-hover:text-indigo-500 transition flex-shrink-0"></i>
+      </a>
+
+    </div>
+
+    <!-- CTA row -->
+    <div class="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex flex-col sm:flex-row items-center gap-5" data-aos="fade-up">
+      <div class="flex-1 text-center sm:text-left">
+        <p class="font-display font-black text-lg text-navy">Found something you like on one of these sites?</p>
+        <p class="text-slate-500 text-sm mt-1">Copy the vehicle reference number and send it to us on WhatsApp. We handle shipping, customs clearance, and delivery straight to your door.</p>
+      </div>
+      <a href="#beforward" class="btn-primary px-7 py-3.5 rounded-full text-white font-bold text-sm shadow-xl flex items-center gap-2 flex-shrink-0">
+        <i class="fa-solid fa-paper-plane"></i> Send Your Reference
       </a>
     </div>
   </div>
@@ -1018,7 +748,7 @@
 <!-- ═══════════════════════════════════════════════ -->
 <!--           PARTNERS & AFFILIATES                 -->
 <!-- ═══════════════════════════════════════════════ -->
-<section id="partners" class="py-20 px-4 bg-white">
+<section id="partners" class="py-20 px-4" style="background:#e8f6fd;">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14" data-aos="fade-up">
       <span class="section-pill"><i class="fa-solid fa-handshake"></i> Trusted Network</span>
@@ -1035,41 +765,38 @@
       <h3 class="text-center font-display font-black text-xl text-navy mb-6 flex items-center justify-center gap-2">
         <i class="fa-solid fa-car text-sky-DEFAULT"></i> Vehicle Sourcing Partners
       </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="partners-grid">
 
-        <!-- BeForward -->
         <a href="https://www.beforward.jp" target="_blank" rel="noopener" class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="0">
           <div class="partner-logo-img-box group-hover:scale-105 transition-transform">
             <img src="images/bforward.png" alt="BE FORWARD Japan"/>
           </div>
-          <p class="text-slate-800 text-sm font-bold">BE FORWARD Japan</p>
-          <p class="text-slate-500 text-xs mt-0.5">Japan's #1 Used Car Exporter</p>
-          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold mt-2 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
-            <i class="fa-solid fa-circle-check text-xs"></i> Authorised Agent
+          <p class="partner-name-text">BE FORWARD Japan</p>
+          <p class="partner-sub-text">Japan's #1 Used Car Exporter</p>
+          <span class="partner-badge bg-green-50 text-green-700 border border-green-100">
+            <i class="fa-solid fa-circle-check"></i> Authorised Agent
           </span>
         </a>
 
-        <!-- SBT Japan -->
         <a href="https://www.sbtjapan.com" target="_blank" rel="noopener" class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="100">
           <div class="partner-logo-img-box group-hover:scale-105 transition-transform">
             <img src="images/sbt.png" alt="SBT Japan"/>
           </div>
-          <p class="text-slate-800 text-sm font-bold">SBT Japan</p>
-          <p class="text-slate-500 text-xs mt-0.5">Global Used Car Exporter since 1993</p>
-          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold mt-2 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
-            <i class="fa-solid fa-circle-check text-xs"></i> Trust Partner
+          <p class="partner-name-text">SBT Japan</p>
+          <p class="partner-sub-text">Global Used Car Exporter since 1993</p>
+          <span class="partner-badge bg-green-50 text-green-700 border border-green-100">
+            <i class="fa-solid fa-circle-check"></i> Trust Partner
           </span>
         </a>
 
-        <!-- Trust Companies -->
         <a href="https://www.trust-ltd.co.jp/en/" target="_blank" rel="noopener" class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="200">
           <div class="partner-logo-img-box group-hover:scale-105 transition-transform">
             <img src="images/trustcompanies.png" alt="Trust Co., Ltd. Japan"/>
           </div>
-          <p class="text-slate-800 text-sm font-bold">Trust Co., Ltd. Japan</p>
-          <p class="text-slate-500 text-xs mt-0.5">Pioneer Exporter — Est. 1988, 160+ Countries</p>
-          <span class="inline-flex items-center gap-1 text-xs text-sky-600 font-semibold mt-2 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-100">
-            <i class="fa-solid fa-star text-xs"></i> Preferred Partner
+          <p class="partner-name-text">Trust Co., Ltd. Japan</p>
+          <p class="partner-sub-text">Pioneer Exporter — Est. 1988, 160+ Countries</p>
+          <span class="partner-badge bg-sky-50 text-sky-700 border border-sky-100">
+            <i class="fa-solid fa-star"></i> Preferred Partner
           </span>
         </a>
 
@@ -1081,68 +808,65 @@
       <h3 class="text-center font-display font-black text-xl text-navy mb-6 flex items-center justify-center gap-2">
         <i class="fa-solid fa-truck-fast text-sky-DEFAULT"></i> Logistics &amp; Freight Partners
       </h3>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="partners-grid">
 
-        <!-- MJS & IRE Freight — branded badge -->
         <div class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="0">
           <div class="partner-logo-img-box group-hover:scale-105 transition-transform" style="background:linear-gradient(135deg,#0284C7,#0F172A);border-color:#0284C7">
-            <i class="fa-solid fa-truck text-white text-2xl mr-2"></i>
+            <i class="fa-solid fa-truck text-white text-xl mr-2"></i>
             <div class="text-left">
               <p class="text-white font-black text-sm leading-tight font-display">MJS &amp; IRE</p>
               <p class="text-sky-200 text-[9px] font-semibold uppercase tracking-wider">Freight Ltd</p>
             </div>
           </div>
-          <p class="text-slate-800 text-sm font-bold">MJS &amp; IRE Freight Ltd</p>
-          <p class="text-slate-500 text-xs mt-0.5">Our Primary Freight &amp; Logistics Arm</p>
-          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold mt-2 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
-            <i class="fa-solid fa-circle-check text-xs"></i> Official Partner
+          <p class="partner-name-text">MJS &amp; IRE Freight Ltd</p>
+          <p class="partner-sub-text">Our Primary Freight &amp; Logistics Arm</p>
+          <span class="partner-badge bg-green-50 text-green-700 border border-green-100">
+            <i class="fa-solid fa-circle-check"></i> Official Partner
           </span>
         </div>
 
-        <!-- QP Groups Zambia — branded badge -->
         <div class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="100">
           <div class="partner-logo-img-box group-hover:scale-105 transition-transform" style="background:linear-gradient(135deg,#4F46E5,#1E1B4B);border-color:#4F46E5">
-            <i class="fa-solid fa-building text-white text-2xl mr-2"></i>
+            <i class="fa-solid fa-building text-white text-xl mr-2"></i>
             <div class="text-left">
               <p class="text-white font-black text-sm leading-tight font-display">QP GROUPS</p>
               <p class="text-indigo-200 text-[9px] font-semibold uppercase tracking-wider">Zambia</p>
             </div>
           </div>
-          <p class="text-slate-800 text-sm font-bold">QP Groups Zambia</p>
-          <p class="text-slate-500 text-xs mt-0.5">Corporate &amp; Freight Solutions</p>
-          <span class="inline-flex items-center gap-1 text-xs text-sky-600 font-semibold mt-2 bg-sky-50 px-2 py-0.5 rounded-full border border-sky-100">
-            <i class="fa-solid fa-star text-xs"></i> Affiliated Partner
+          <p class="partner-name-text">QP Groups Zambia</p>
+          <p class="partner-sub-text">Corporate &amp; Freight Solutions</p>
+          <span class="partner-badge bg-sky-50 text-sky-700 border border-sky-100">
+            <i class="fa-solid fa-star"></i> Affiliated Partner
           </span>
         </div>
 
-        <!-- Zambia Revenue Authority -->
         <a href="https://www.zra.org.zm" target="_blank" rel="noopener" class="partner-logo-wrap group" data-aos="fade-up" data-aos-delay="200">
           <div class="partner-logo-img-box group-hover:scale-105 transition-transform">
             <img src="images/zra.png" alt="Zambia Revenue Authority"/>
           </div>
-          <p class="text-slate-800 text-sm font-bold">Zambia Revenue Authority</p>
-          <p class="text-slate-500 text-xs mt-0.5">Licensed Customs Clearing Agent</p>
-          <span class="inline-flex items-center gap-1 text-xs text-green-600 font-semibold mt-2 bg-green-50 px-2 py-0.5 rounded-full border border-green-100">
-            <i class="fa-solid fa-circle-check text-xs"></i> Government Registered
+          <p class="partner-name-text">Zambia Revenue Authority</p>
+          <p class="partner-sub-text">Licensed Customs Clearing Agent</p>
+          <span class="partner-badge bg-green-50 text-green-700 border border-green-100">
+            <i class="fa-solid fa-circle-check"></i> Government Registered
           </span>
         </a>
 
       </div>
     </div>
 
-    <!-- Regional Service Countries -->
+    <!-- Countries -->
     <div data-aos="fade-up" class="bg-slate-50 rounded-3xl p-8 border border-slate-100">
       <h3 class="text-center font-display font-black text-xl text-navy mb-6 flex items-center justify-center gap-2">
         <i class="fa-solid fa-globe-africa text-sky-DEFAULT"></i> Countries We Serve
       </h3>
       <div class="flex flex-wrap justify-center gap-3">
-        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇿🇲 Zambia</span>
-        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇿🇼 Zimbabwe</span>
-        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇲🇼 Malawi</span>
-        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇹🇿 Tanzania</span>
-        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇨🇩 DRC Congo</span>
-        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇲🇿 Mozambique</span>
-        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">🇧🇼 Botswana</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">Zambia</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">Zimbabwe</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">Malawi</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">Tanzania</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">DRC Congo</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">Mozambique</span>
+        <span class="flex items-center gap-2 bg-white border border-slate-200 text-navy font-semibold text-sm px-4 py-2 rounded-full shadow-sm hover-lift">Botswana</span>
       </div>
     </div>
 
@@ -1153,7 +877,7 @@
 <!-- ═══════════════════════════════════════════════ -->
 <!--              TESTIMONIALS                       -->
 <!-- ═══════════════════════════════════════════════ -->
-<section class="py-20 px-4 bg-slate-50">
+<section class="py-20 px-4" style="background:#d0ecf9;">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14" data-aos="fade-up">
       <span class="section-pill"><i class="fa-solid fa-star"></i> Client Experiences</span>
@@ -1163,7 +887,7 @@
     </div>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-      <div class="testimonial-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="0">
+      <div class="testimonial-card rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="0">
         <div class="flex gap-1 mb-4">
           <i class="fa-solid fa-star text-gold text-sm"></i>
           <i class="fa-solid fa-star text-gold text-sm"></i>
@@ -1183,7 +907,7 @@
         </div>
       </div>
 
-      <div class="testimonial-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="100">
+      <div class="testimonial-card rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="100">
         <div class="flex gap-1 mb-4">
           <i class="fa-solid fa-star text-gold text-sm"></i>
           <i class="fa-solid fa-star text-gold text-sm"></i>
@@ -1203,7 +927,7 @@
         </div>
       </div>
 
-      <div class="testimonial-card bg-white rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="200">
+      <div class="testimonial-card rounded-2xl p-7 shadow-sm border border-slate-100" data-aos="fade-up" data-aos-delay="200">
         <div class="flex gap-1 mb-4">
           <i class="fa-solid fa-star text-gold text-sm"></i>
           <i class="fa-solid fa-star text-gold text-sm"></i>
@@ -1231,7 +955,7 @@
 <!-- ═══════════════════════════════════════════════ -->
 <!--                   FAQ                           -->
 <!-- ═══════════════════════════════════════════════ -->
-<section class="py-20 px-4 bg-white">
+<section class="py-20 px-4" style="background:#e8f6fd;">
   <div class="max-w-3xl mx-auto">
     <div class="text-center mb-12" data-aos="fade-up">
       <span class="section-pill"><i class="fa-solid fa-circle-question"></i> Common Questions</span>
@@ -1248,9 +972,7 @@
           <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
         </button>
         <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
-          <div class="pb-5">
-            Simply browse BeForward.com or SBT Japan, find the vehicle you want, and copy the reference number (e.g. SIE-123456). Then come to our website and paste it in the BeForward form above, or send it directly to us on WhatsApp. We'll handle everything from there — auction bidding, shipping, customs clearance, and delivery.
-          </div>
+          <div class="pb-5">Simply browse BeForward.com or SBT Japan, find the vehicle you want, and copy the reference number (e.g. SIE-123456). Then come to our website and paste it in the BeForward form above, or send it directly to us on WhatsApp. We'll handle everything from there — auction bidding, shipping, customs clearance, and delivery.</div>
         </div>
       </div>
 
@@ -1260,9 +982,7 @@
           <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
         </button>
         <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
-          <div class="pb-5">
-            Typically, the full process takes 6–10 weeks from auction purchase to delivery at your location. This includes shipping from Japan (4–6 weeks), customs clearance at Nakonde (1–2 weeks), and local delivery. We keep you updated at every stage of the journey.
-          </div>
+          <div class="pb-5">Typically, the full process takes 6–10 weeks from auction purchase to delivery at your location. This includes shipping from Japan (4–6 weeks), customs clearance at Nakonde (1–2 weeks), and local delivery. We keep you updated at every stage of the journey.</div>
         </div>
       </div>
 
@@ -1272,9 +992,7 @@
           <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
         </button>
         <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
-          <div class="pb-5">
-            Yes! We deliver to Zimbabwe, Malawi, Tanzania, DRC Congo, Mozambique, Botswana, and other neighboring countries. We handle RIT (Road In Transit) documentation and international customs clearance through our established network.
-          </div>
+          <div class="pb-5">Yes! We deliver to Zimbabwe, Malawi, Tanzania, DRC Congo, Mozambique, Botswana, and other neighboring countries. We handle RIT (Road In Transit) documentation and international customs clearance through our established network.</div>
         </div>
       </div>
 
@@ -1284,9 +1002,7 @@
           <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
         </button>
         <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
-          <div class="pb-5">
-            We accept bank transfers (Kwacha and USD), mobile money (MTN/Airtel), and cash payments at our offices. For international transactions, we use wire transfers. Please contact us on WhatsApp to get our banking details and payment schedule.
-          </div>
+          <div class="pb-5">We accept bank transfers (Kwacha and USD), mobile money (MTN/Airtel), and cash payments at our offices. For international transactions, we use wire transfers. Please contact us on WhatsApp to get our banking details and payment schedule.</div>
         </div>
       </div>
 
@@ -1296,9 +1012,7 @@
           <i class="fa-solid fa-chevron-down faq-chevron text-sky-DEFAULT flex-shrink-0"></i>
         </button>
         <div class="faq-answer px-5 text-slate-600 text-sm leading-relaxed">
-          <div class="pb-5">
-            Absolutely! We clear all types of goods — electronics, machinery, household goods, commercial freight, and more. Our agents are stationed at all major Zambian border posts including Nakonde, Chirundu, Kazungula, and others.
-          </div>
+          <div class="pb-5">Absolutely! We clear all types of goods — electronics, machinery, household goods, commercial freight, and more. Our agents are stationed at all major Zambian border posts including Nakonde, Chirundu, Kazungula, and others.</div>
         </div>
       </div>
 
@@ -1310,7 +1024,7 @@
 <!-- ═══════════════════════════════════════════════ -->
 <!--              CONTACT SECTION                    -->
 <!-- ═══════════════════════════════════════════════ -->
-<section id="contact" class="py-20 px-4 bg-slate-50">
+<section id="contact" class="py-20 px-4" style="background:#d0ecf9;">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-14" data-aos="fade-up">
       <span class="section-pill"><i class="fa-solid fa-envelope"></i> Get In Touch</span>
@@ -1401,7 +1115,7 @@
           <i class="fa-brands fa-whatsapp text-5xl mb-3"></i>
           <h3 class="font-display font-black text-2xl mb-2">Chat With Us Now!</h3>
           <p class="text-white/80 text-sm mb-5">Get instant responses, vehicle availability &amp; pricing — all on WhatsApp.</p>
-          <a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I would like to inquire about your vehicles and services."
+          <a href="https://wa.me/260965528058?text=Hello SISIMA GROUP, I would like to inquire about your vehicles and services."
              target="_blank"
              class="inline-block bg-white text-green-700 font-black px-8 py-3 rounded-full shadow-lg hover:scale-105 transition text-sm">
             <i class="fa-brands fa-whatsapp mr-2"></i> Start WhatsApp Chat
@@ -1442,10 +1156,8 @@
 <footer class="bg-navy text-white pt-16 pb-8 px-4" style="background: linear-gradient(160deg, #0A0F1E 0%, #0F172A 100%);">
   <div class="max-w-6xl mx-auto">
 
-    <!-- Top section -->
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14 pb-14 border-b border-white/10">
 
-      <!-- Brand -->
       <div class="lg:col-span-1">
         <div class="flex items-center gap-3 mb-5">
           <img src="images/logo.jpeg" alt="Logo" class="h-14 w-14 rounded-full object-cover ring-2 ring-sky-DEFAULT/50"/>
@@ -1459,10 +1171,8 @@
           Your trusted vehicle sourcing and logistics partner across Zambia and Southern Africa.
         </p>
         <p class="italic text-sky-light text-sm font-semibold border-l-2 border-sky-DEFAULT pl-3">"Partnership Based on Trust."</p>
-
-        <!-- Social -->
         <div class="flex items-center gap-3 mt-6">
-          <a href="https://wa.me/260977504807" target="_blank"
+          <a href="https://wa.me/260965528058" target="_blank"
              class="w-10 h-10 rounded-full bg-green-600/20 border border-green-600/30 flex items-center justify-center hover:bg-green-600/50 transition">
             <i class="fa-brands fa-whatsapp text-green-400"></i>
           </a>
@@ -1477,7 +1187,6 @@
         </div>
       </div>
 
-      <!-- Quick Links -->
       <div>
         <h4 class="font-display font-black text-sm tracking-widest uppercase text-sky-light mb-6">Quick Links</h4>
         <ul class="space-y-3 text-slate-400 text-sm">
@@ -1488,9 +1197,16 @@
           <li><a href="#partners" class="hover:text-white transition flex items-center gap-2 group"><i class="fa-solid fa-chevron-right text-xs text-sky-DEFAULT group-hover:translate-x-1 transition-transform"></i> Our Partners</a></li>
           <li><a href="#contact"  class="hover:text-white transition flex items-center gap-2 group"><i class="fa-solid fa-chevron-right text-xs text-sky-DEFAULT group-hover:translate-x-1 transition-transform"></i> Contact Us</a></li>
         </ul>
+        <!-- Admin access — subtle, not prominent to visitors -->
+        <div class="mt-6 pt-4 border-t border-white/5">
+          <a href="admin.html"
+             class="flex items-center gap-2 text-slate-600 hover:text-slate-400 transition text-xs"
+             title="Staff only">
+            <i class="fa-solid fa-lock text-[10px]"></i> Staff Portal
+          </a>
+        </div>
       </div>
 
-      <!-- Partners -->
       <div>
         <h4 class="font-display font-black text-sm tracking-widest uppercase text-sky-light mb-6">Key Partners</h4>
         <ul class="space-y-3 text-slate-400 text-sm">
@@ -1503,7 +1219,6 @@
         </ul>
       </div>
 
-      <!-- Contact Summary -->
       <div>
         <h4 class="font-display font-black text-sm tracking-widest uppercase text-sky-light mb-6">Contact Info</h4>
         <ul class="space-y-4 text-slate-400 text-sm">
@@ -1550,9 +1265,10 @@
         &copy; 2025 SISIMA GROUP ZAMBIA LIMITED &amp; MJS &amp; IRE Freight Limited. All rights reserved.
       </p>
       <p class="text-center">
-        Designed with <i class="fa-solid fa-heart text-red-400 mx-1"></i> for excellence in Zambia
+        Designed with <i class="fa-solid fa-heart text-red-400 mx-1"></i> by <span class="text-sky-light font-semibold">TM Technologies</span>
       </p>
     </div>
+
   </div>
 </footer>
 
@@ -1560,7 +1276,7 @@
 <!-- ═══════════════════════════════════════════════ -->
 <!--           FLOATING WHATSAPP BUTTON              -->
 <!-- ═══════════════════════════════════════════════ -->
-<a href="https://wa.me/260977504807?text=Hello SISIMA GROUP, I found your website and would like to inquire."
+<a href="https://wa.me/260965528058?text=Hello SISIMA GROUP, I found your website and would like to inquire."
    target="_blank" class="wa-float" title="Chat with us on WhatsApp">
   <span class="wa-float-ping"></span>
   <i class="fa-brands fa-whatsapp text-white text-3xl relative z-10"></i>
@@ -1573,185 +1289,48 @@
 
 
 <!-- ═══════════════════════════════════════════════ -->
-<!--                  SCRIPTS                        -->
+<!--          SCRIPTS — loaded at end of body        -->
 <!-- ═══════════════════════════════════════════════ -->
-<script>
-  // ── AOS ──
-  AOS.init({ duration: 700, once: true, easing: 'ease-out-cubic', offset: 50 });
+<script src="scripts.js"></script>
 
-  // ── Hero Swiper ──
-  new Swiper('.hero-swiper', {
-    loop: true,
-    autoplay: { delay: 5500, disableOnInteraction: false, pauseOnMouseEnter: true },
-    speed: 1100,
-    effect: 'fade',
-    fadeEffect: { crossFade: true },
-    navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
-    pagination: { el: '.swiper-pagination', clickable: true },
-  });
+<!-- ═══════════════════════════════════════════════ -->
+<!--   FIREBASE — loads cars from Firestore           -->
+<!--   Paste your firebaseConfig values below         -->
+<!-- ═══════════════════════════════════════════════ -->
+<script type="module">
+  import { initializeApp }  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy }
+                            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ── Stock Swiper ──
-  new Swiper('.stock-swiper', {
-    loop: true,
-    autoplay: { delay: 4000, disableOnInteraction: false },
-    speed: 700,
-    slidesPerView: 1,
-    spaceBetween: 20,
-    breakpoints: {
-      640:  { slidesPerView: 2, spaceBetween: 20 },
-      1024: { slidesPerView: 3, spaceBetween: 24 },
-    },
-    pagination: { el: '.stock-swiper .swiper-pagination', clickable: true },
-  });
+  // ── PASTE YOUR FIREBASE CONFIG HERE (same as in admin.html) ──
+  const firebaseConfig = {
+    apiKey:            "PASTE_YOUR_API_KEY_HERE",
+    authDomain:        "PASTE_YOUR_AUTH_DOMAIN_HERE",
+    projectId:         "PASTE_YOUR_PROJECT_ID_HERE",
+    storageBucket:     "PASTE_YOUR_STORAGE_BUCKET_HERE",
+    messagingSenderId: "PASTE_YOUR_MESSAGING_SENDER_ID_HERE",
+    appId:             "PASTE_YOUR_APP_ID_HERE"
+  };
+  // ─────────────────────────────────────────────────────────────
 
-  // ── Navbar Scroll ──
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
-    const st = document.getElementById('scroll-top');
-    if (window.scrollY > 400) st.classList.add('visible');
-    else st.classList.remove('visible');
+  const app = initializeApp(firebaseConfig);
+  const db  = getFirestore(app);
 
-    // Page progress bar
-    const docH = document.documentElement.scrollHeight - window.innerHeight;
-    const pct  = docH > 0 ? (window.scrollY / docH * 100) : 0;
-    document.getElementById('page-progress').style.width = pct + '%';
-  });
-
-  // ── Mobile Menu ──
-  let menuOpen = false;
-  document.getElementById('menu-btn').addEventListener('click', () => {
-    menuOpen = !menuOpen;
-    const m = document.getElementById('mobile-menu');
-    const ic = document.getElementById('menu-icon');
-    if (menuOpen) {
-      m.style.display = 'flex';
-      requestAnimationFrame(() => m.classList.add('open'));
-      ic.className = 'fa-solid fa-xmark text-lg';
-      document.body.style.overflow = 'hidden';
-    } else {
-      closeMobileMenu();
+  try {
+    const q    = query(collection(db, "cars"), orderBy("name"));
+    const snap = await getDocs(q);
+    const cars = snap.docs.map(d => ({ docId: d.id, ...d.data() }));
+    if (typeof window.renderStockFromFirebase === 'function') {
+      window.renderStockFromFirebase(cars);
     }
-  });
-
-  function closeMobileMenu() {
-    menuOpen = false;
-    const m = document.getElementById('mobile-menu');
-    const ic = document.getElementById('menu-icon');
-    m.classList.remove('open');
-    setTimeout(() => { m.style.display = 'none'; }, 400);
-    ic.className = 'fa-solid fa-bars text-lg';
-    document.body.style.overflow = '';
+  } catch (e) {
+    console.error('Firebase load error:', e);
+    // Fallback: hide loader, show empty state
+    const l = document.getElementById('cars-loading');
+    if (l) l.style.display = 'none';
+    const em = document.getElementById('cars-empty');
+    if (em) em.classList.remove('hidden');
   }
-
-  // Close mobile menu on ESC
-  document.addEventListener('keydown', e => { if (e.key === 'Escape' && menuOpen) closeMobileMenu(); });
-
-  // ── BeForward WhatsApp ──
-  function sendToWhatsApp() {
-    const input = document.getElementById('beforward-input');
-    const ref = input.value.trim();
-    if (!ref) {
-      input.classList.add('border-red-500', 'ring-red-500/25', 'ring-2');
-      input.focus();
-      input.placeholder = 'Please enter a reference number first!';
-      setTimeout(() => {
-        input.classList.remove('border-red-500', 'ring-red-500/25', 'ring-2');
-        input.placeholder = 'e.g. SIE-123456 or SBT-789012';
-      }, 3000);
-      return;
-    }
-    const msg = encodeURIComponent(`Hello SISIMA GROUP, my Be Forward / SBT Reference Number is: ${ref}`);
-    window.open(`https://wa.me/260977504807?text=${msg}`, '_blank');
-  }
-
-  function clearInput() {
-    document.getElementById('beforward-input').value = '';
-    document.getElementById('beforward-input').focus();
-  }
-
-  document.getElementById('beforward-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') sendToWhatsApp();
-  });
-
-  // ── Stat Counter Animation ──
-  function animateCounters() {
-    document.querySelectorAll('.stat-number').forEach(el => {
-      const target = parseInt(el.getAttribute('data-target'));
-      const duration = 1800;
-      const step = target / (duration / 16);
-      let current = 0;
-      const timer = setInterval(() => {
-        current = Math.min(current + step, target);
-        el.textContent = Math.floor(current);
-        if (current >= target) clearInterval(timer);
-      }, 16);
-    });
-  }
-
-  // Use IntersectionObserver for stats
-  const statsSection = document.querySelector('.stat-number');
-  if (statsSection) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounters();
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.3 });
-    observer.observe(statsSection.closest('section') || statsSection);
-  }
-
-  // ── FAQ Accordion ──
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const answer = item.querySelector('.faq-answer');
-    const isOpen = item.classList.contains('open');
-
-    // Close all
-    document.querySelectorAll('.faq-item.open').forEach(el => {
-      el.classList.remove('open');
-      el.querySelector('.faq-answer').classList.remove('open');
-    });
-
-    // Open clicked if was closed
-    if (!isOpen) {
-      item.classList.add('open');
-      answer.classList.add('open');
-    }
-  }
-
-  // ── Vehicle Filter ──
-  function filterVehicles(category) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    document.querySelector(`[data-filter="${category}"]`).classList.add('active');
-    // Note: with Swiper, filtering is visual only on desktop; on mobile all slides still show
-    document.querySelectorAll('.stock-swiper .swiper-slide').forEach(slide => {
-      if (category === 'all' || slide.getAttribute('data-category') === category) {
-        slide.style.display = '';
-        slide.style.opacity = '1';
-      } else {
-        slide.style.opacity = '0.25';
-        slide.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          if (slide.style.opacity === '0.25') slide.style.display = '';
-        }, 300);
-      }
-    });
-  }
-
-  // ── Smooth Active Nav on Scroll ──
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-      if (window.scrollY >= section.offsetTop - 120) current = section.getAttribute('id');
-    });
-    navLinks.forEach(link => {
-      link.style.color = link.getAttribute('href') === `#${current}` ? 'var(--sky)' : '';
-    });
-  }, { passive: true });
 </script>
 
 </body>
